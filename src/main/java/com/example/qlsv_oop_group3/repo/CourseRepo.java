@@ -1,0 +1,24 @@
+package com.example.qlsv_oop_group3.repo;
+
+import com.example.qlsv_oop_group3.entity.Course;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Optional;
+
+@Repository
+public interface CourseRepo extends JpaRepository<Course, Long> {
+    //Tìm theo mã môn học
+    Optional<Course> findByCourseCode(String courseCode);
+    //Tìm theo tên môn học không phân biệt chữ hoa và chữ thường
+    List<Course> findAllByCourseNameContainingIgnoreCase(String courseName);
+    boolean existsByCourseCode(String courseCode);
+    List<Course> findByCredit(Integer credit);
+    //Tìm khóa học theo học kỳ
+    @Query("Select distinct c from Course c Join c.grades g where g.semester = :semester")
+    List<Course> findCourseBySemester(@Param("semester") String semester);
+    //Tìm khóa học có sinh vin đăng ký nhiều nhất
+}
