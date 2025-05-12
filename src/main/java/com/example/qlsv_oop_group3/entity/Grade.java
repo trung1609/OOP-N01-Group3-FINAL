@@ -15,6 +15,8 @@ public class Grade {
     private Double finalScore;
     private Double score;
     private String semester;
+    @Column(name = "average_score")
+    private Double averageScore;
 
     @ManyToOne
     @JoinColumn(name = "student_id")

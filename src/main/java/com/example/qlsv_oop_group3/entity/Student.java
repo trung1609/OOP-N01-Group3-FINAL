@@ -19,8 +19,8 @@ public class Student {
     private long id;
 
     @Column(unique = true)
-    private  String fullName;
     private  String studentCode;
+    private  String fullName;
     private  String email;
     private String address;
     private LocalDate dateOfBirth;
