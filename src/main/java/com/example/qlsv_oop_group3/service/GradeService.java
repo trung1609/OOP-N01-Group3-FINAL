@@ -6,7 +6,6 @@ import com.example.qlsv_oop_group3.entity.Student;
 import com.example.qlsv_oop_group3.repo.CourseRepo;
 import com.example.qlsv_oop_group3.repo.GradeRepo;
 import com.example.qlsv_oop_group3.repo.StudentRepo;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,11 +13,16 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-@RequiredArgsConstructor
 public class GradeService {
     private final GradeRepo gradeRepo;
     private final CourseRepo courseRepo;
     private final StudentRepo studentRepo;
+
+    public GradeService(GradeRepo gradeRepo, CourseRepo courseRepo, StudentRepo studentRepo) {
+        this.gradeRepo = gradeRepo;
+        this.courseRepo = courseRepo;
+        this.studentRepo = studentRepo;
+    }
 
     //Them diem moi cho sinh vien
     public Grade addGrade(Grade grade, Long studentId, Long courseId){
@@ -197,4 +201,6 @@ public class GradeService {
         gradeRepo.deleteById(id);
     }
 
+    public void saveGrade(Grade grade) {
+    }
 }

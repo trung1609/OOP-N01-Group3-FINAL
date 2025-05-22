@@ -8,9 +8,16 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class CourseService {
     private  final CourseRepo courseRepo;
+    public CourseService(CourseRepo courseRepo) {
+        this.courseRepo = courseRepo;
+    }
+
+    public static Object getAllCourses() {
+        return null;
+    }
+
     public Course createCourse(Course course){
         if(courseRepo.existsByCourseCode(course.getCourseCode())){
             throw new RuntimeException("Khóa học đã tồn tại");
