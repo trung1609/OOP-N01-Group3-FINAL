@@ -11,7 +11,6 @@ import java.util.Optional;
 
 @Repository
 public interface CourseRepo extends JpaRepository<Course, Long> {
-<<<<<<< HEAD
     // Tìm khóa học theo mã môn học
     Optional<Course> findByCourseCode(String courseCode);
 
@@ -33,21 +32,6 @@ public interface CourseRepo extends JpaRepository<Course, Long> {
     List<Course> findCoursesByStudentId(@Param("studentId") Long studentId);
 
     // Tìm khóa học có số tín chỉ lớn hơn hoặc bằng giá trị cụ thể
-=======
-    //Tìm theo mã môn học
-    Optional<Course> findByCourseCode(String courseCode);
-    //Tìm theo tên môn học không phân biệt chữ hoa và chữ thường
-    List<Course> findAllByCourseNameContainingIgnoreCase(String courseName);
-    boolean existsByCourseCode(String courseCode);
-    List<Course> findByCredit(Integer credit);
-    //Tìm khóa học theo học kỳ
-    @Query("Select distinct c from Course c Join c.grades g where g.semester = :semester")
-    List<Course> findCourseBySemester(@Param("semester") String semester);
-    //Lấy danh sách các môn học mà một sinh viên cụ thể đã học (có điểm)
-    @Query("SELECT DISTINCT c FROM Course c JOIN c.grades g WHERE g.student.id = :studentId")
-    List<Course> findCoursesByStudentId(@Param("studentId") Long studentId);
-    //Tìm khóa học có số tín chỉ lớn hơn hoặc bằng giá trị cụ thể
->>>>>>> 75a43c4642799cb26b42214365ba6ddb4aca855a
     @Query("SELECT c FROM Course c WHERE c.credit >= :minCredit")
     List<Course> findCoursesByMinimumCredit(@Param("minCredit") Integer minCredit);
 }
