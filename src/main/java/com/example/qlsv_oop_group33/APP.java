@@ -1,4 +1,13 @@
-package com.example.qlsv_oop_group33;
+package com.example.qlsv_oop_group3;
 
-public class APP {
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class App {
+
+    public static void main(String[] args) {
+        SpringApplication.run(App.class, args);
+    }
+
 }
