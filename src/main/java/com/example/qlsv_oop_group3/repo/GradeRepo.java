@@ -10,6 +10,7 @@ import java.util.List;
 
 @Repository
 public interface GradeRepo extends JpaRepository<Grade, Long> {
+<<<<<<< HEAD
     // Lấy danh sách điểm theo id sinh viên
     List<Grade> findByStudentId(Long studentId);
 
@@ -28,9 +29,22 @@ public interface GradeRepo extends JpaRepository<Grade, Long> {
     List<Grade> findByStudentIdAndSemester(Long studentId, String semester);
 
     // Tính GPA học kỳ của sinh viên
+=======
+    List<Grade> findByStudentId(Long studentId);
+    List<Grade> findByCourseId(Long courseId);
+    List<Grade> findBySemester(String semester);
+
+    @Query("Select g from Grade g where g.student.id = :studentId and g.course.id = :courseId")
+    Grade findByStudentIdAndCourseId(@Param("studentId") Long studentId,@Param("courseId") Long courseId);
+    List<Grade> findByStudentIdAndSemester(Long studentId, String semester);
+>>>>>>> 75a43c4642799cb26b42214365ba6ddb4aca855a
     @Query("SELECT SUM(g.score * g.course.credit) / SUM(g.course.credit) " +
             "FROM Grade g " +
             "WHERE g.student.id = :studentId AND g.semester = :semester")
     Double calculateSemesterGPA(@Param("studentId") Long studentId,
                                 @Param("semester") String semester);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 75a43c4642799cb26b42214365ba6ddb4aca855a
 }
