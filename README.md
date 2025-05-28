@@ -90,7 +90,8 @@ Lớp:  Grade
 
   +Delete()
 
-  ![download](https://github.com/user-attachments/assets/424628a0-a8f7-4f0f-b617-179efc358ee7)
+![download](https://github.com/user-attachments/assets/bc442f41-6fb4-4bcc-867c-ae59f7c970b0)
+
 
   Link repo: https://github.com/trung1609/OOP-N01-Group3-FINAL.git (Liên kết đến một trang bên ngoài.)
 
