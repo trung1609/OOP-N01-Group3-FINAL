@@ -87,7 +87,11 @@ Lớp:  Grade
 
 + Add()
 + Update()
+
   +Delete()
+
+  ![download](https://github.com/user-attachments/assets/424628a0-a8f7-4f0f-b617-179efc358ee7)
+
   Link repo: https://github.com/trung1609/OOP-N01-Group3-FINAL.git (Liên kết đến một trang bên ngoài.)
 
 https://github.com/trung1609/OOP-N01-Group3-FINAL/tree/Trung
