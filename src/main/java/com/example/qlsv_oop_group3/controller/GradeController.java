@@ -86,44 +86,4 @@ public class GradeController {
             @RequestBody Grade grade) {
         return ResponseEntity.ok(gradeService.updateGrade(id, grade));
     }
-
-    // MVC Controller methods
-    @GetMapping("/view")
-    public String listGrades(Model model) {
-        model.addAttribute("grades", gradeService.getAllGrades());
-        return "grade/list";
-    }
-
-    @GetMapping("/view/add")
-    public String addGradeForm(Model model) {
-        model.addAttribute("grade", new Grade());
-        return "grade/add";
-    }
-
-    @PostMapping("/view/add")
-    public String submitGrade(@ModelAttribute Grade grade) {
-        gradeService.saveGrade(grade);
-        return "redirect:/grades";
-    }
-
-    @GetMapping("/view/edit/{id}")
-    public String editGradeForm(@PathVariable Long id, Model model) {
-        Grade grade = gradeService.getGradeById(id);
-        model.addAttribute("grade", grade);
-        return "grade/edit";
-    }
-
-    //Cap nhat diem theo ID (MVC endpoint)
-    @PostMapping("/view/edit/{id}")
-    public String updateGradeMvc(@PathVariable Long id, @ModelAttribute Grade grade) {
-        grade.setId(id);
-        gradeService.saveGrade(grade);
-        return "redirect:/grades";
-    }
-
-    @GetMapping("/view/delete/{id}")
-    public String deleteGradeMvc(@PathVariable Long id) {
-        gradeService.deleteGrade(id);
-        return "redirect:/grades";
-    }
 }

@@ -200,7 +200,4 @@ public class GradeService {
         }
         gradeRepo.deleteById(id);
     }
-
-    public void saveGrade(Grade grade) {
-    }
 }
