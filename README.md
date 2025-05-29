@@ -89,7 +89,8 @@ Lớp:  Grade
 + Update()
 
   +Delete()
-
+  
+Class Diagram
 
 ![Class Diagram](https://github.com/user-attachments/assets/20e79c7d-373e-43f9-943a-6a74d715b869)
 
