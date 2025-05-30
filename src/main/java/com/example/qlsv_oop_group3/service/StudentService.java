@@ -45,6 +45,7 @@ public class StudentService {
         return studentRepo.findStudentsBySemester(semester);
     }
     public void deleteStudentById(Long id){
+
         studentRepo.deleteById(id);
     }
 }
