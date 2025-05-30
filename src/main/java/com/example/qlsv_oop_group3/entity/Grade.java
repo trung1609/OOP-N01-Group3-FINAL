@@ -1,9 +1,11 @@
 package com.example.qlsv_oop_group3.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "grades")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Grade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,10 +20,12 @@ public class Grade {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "grades"})
     private Student student;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "grades"})
     private Course course;
 
     // Default constructor

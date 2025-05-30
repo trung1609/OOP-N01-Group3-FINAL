@@ -17,6 +17,7 @@ public interface GradeRepo extends JpaRepository<Grade, Long> {
     @Query("Select g from Grade g where g.student.id = :studentId and g.course.id = :courseId")
     Grade findByStudentIdAndCourseId(@Param("studentId") Long studentId,@Param("courseId") Long courseId);
     List<Grade> findByStudentIdAndSemester(Long studentId, String semester);
+    List<Grade> findByCourseIdAndSemester(Long courseId, String semester);
     @Query("SELECT SUM(g.score * g.course.credit) / SUM(g.course.credit) " +
             "FROM Grade g " +
             "WHERE g.student.id = :studentId AND g.semester = :semester")

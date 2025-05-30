@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -36,30 +37,52 @@ public class GradeController {
 
     //Lay diem tu ID
     @GetMapping("/{id}")
-    public ResponseEntity<Grade> getGrade(@PathVariable Long id) {
-        return ResponseEntity.ok(gradeService.getGradeById(id));
+    public ResponseEntity<?> getGrade(@PathVariable Long id) {
+        Grade grade = gradeService.getGradeById(id);
+        return ResponseEntity.ok(new com.example.qlsv_oop_group3.dto.GradeDTO(grade));
     }
 
     //Lay tat ca diem
     @GetMapping
-    public ResponseEntity<List<Grade>> getAllGrades() {
-        return ResponseEntity.ok(gradeService.getAllGrades());
+    public ResponseEntity<?> getAllGrades() {
+        List<Grade> grades = gradeService.getAllGrades();
+        List<com.example.qlsv_oop_group3.dto.GradeDTO> gradeDTOs = new ArrayList<>();
+
+        for (Grade grade : grades) {
+            gradeDTOs.add(new com.example.qlsv_oop_group3.dto.GradeDTO(grade));
+        }
+
+        return ResponseEntity.ok(gradeDTOs);
     }
 
     //Lay diem tu 1 sinh vien
     @GetMapping("/student/{studentId}")
-    public ResponseEntity<List<Grade>> getStudentGrades(@PathVariable Long studentId) {
-        return ResponseEntity.ok(gradeService.getGradesByStudentId(studentId));
+    public ResponseEntity<?> getStudentGrades(@PathVariable Long studentId) {
+        List<Grade> grades = gradeService.getGradesByStudentId(studentId);
+        List<com.example.qlsv_oop_group3.dto.GradeDTO> gradeDTOs = new ArrayList<>();
+
+        for (Grade grade : grades) {
+            gradeDTOs.add(new com.example.qlsv_oop_group3.dto.GradeDTO(grade));
+        }
+
+        return ResponseEntity.ok(gradeDTOs);
     }
 
     //Lay diem tu 1 hoc phan cu the
     @GetMapping("/course/{courseId}")
-    public ResponseEntity<List<Grade>> getCourseGrades(@PathVariable Long courseId) {
-        return ResponseEntity.ok(gradeService.getGradesByCourseId(courseId));
+    public ResponseEntity<?> getCourseGrades(@PathVariable Long courseId) {
+        List<Grade> grades = gradeService.getGradesByCourseId(courseId);
+        List<com.example.qlsv_oop_group3.dto.GradeDTO> gradeDTOs = new ArrayList<>();
+
+        for (Grade grade : grades) {
+            gradeDTOs.add(new com.example.qlsv_oop_group3.dto.GradeDTO(grade));
+        }
+
+        return ResponseEntity.ok(gradeDTOs);
     }
 
     //Lay bang diem theo hoc ky
-    @GetMapping("/academic-record/semester")
+    @GetMapping("/academic-record/semester/{studentId}")
     public ResponseEntity<Map<String, Object>> getSemesterRecord(
             @RequestParam Long studentId,
             @RequestParam String semester) {

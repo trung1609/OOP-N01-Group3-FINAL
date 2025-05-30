@@ -26,6 +26,13 @@ public class GradeService {
 
     //Them diem moi cho sinh vien
     public Grade addGrade(Grade grade, Long studentId, Long courseId){
+        if (studentId == null) {
+            throw new RuntimeException("ID sinh viên không được để trống");
+        }
+        if (courseId == null) {
+            throw new RuntimeException("ID khóa học không được để trống");
+        }
+
         Student student = studentRepo.findById(studentId).orElseThrow(() -> new RuntimeException("Không tìm thấy sinh viên"));
         Course course = courseRepo.findById(courseId).orElseThrow(() -> new RuntimeException("Không tìm thấy môn học"));
 
@@ -115,30 +122,31 @@ public class GradeService {
             totalCredits += credits;
             totalGradePoints += credits * gradePoint;
 
-            courseResults.add(Map.of(
-            "courseCode", course.getCourseCode(),
-            "courseName", course.getCourseName(),
-            "credits", credits,
-            "midtermScore", grade.getMidtermScore(),
-            "finalScore", grade.getFinalScore(),
-            "score", score,
-            "letterGrade", letterGrade,
-            "gradePoint", gradePoint
-            ));
+            Map<String, Object> courseResult = new java.util.HashMap<>();
+            courseResult.put("courseCode", course.getCourseCode());
+            courseResult.put("courseName", course.getCourseName());
+            courseResult.put("credits", credits);
+            courseResult.put("midtermScore", grade.getMidtermScore());
+            courseResult.put("finalScore", grade.getFinalScore());
+            courseResult.put("score", score);
+            courseResult.put("letterGrade", letterGrade);
+            courseResult.put("gradePoint", gradePoint);
+            courseResults.add(courseResult);
         }
 
         //Tinh GPA hoc ky
         Double semesterGPA = totalCredits > 0 ? Math.round((totalGradePoints / totalCredits) * 100.0) /100.0 : 0.0;
 
-        return Map.of(
-                "studentId", studentId,
-                "studentName", student.getFullName(),
-                "studentCode", student.getStudentCode(),
-                "semester", semester,
-                "courses", courseResults,
-                "totalCredits", totalCredits,
-                "semesterGPA", semesterGPA
-        );
+        Map<String, Object> result = new java.util.HashMap<>();
+        result.put("studentId", studentId);
+        result.put("studentName", student.getFullName());
+        result.put("studentCode", student.getStudentCode());
+        result.put("semester", semester);
+        result.put("courses", courseResults);
+        result.put("totalCredits", totalCredits);
+        result.put("semesterGPA", semesterGPA);
+
+        return result;
     }
 
     //Tính điểm trung bình tích lũy (CPA)
@@ -160,14 +168,16 @@ public class GradeService {
 
         //Tinh CPA
         Double cpa = totalCredits > 0 ? Math.round((totalGradePoints / totalCredits) * 100.0) /100.0 : 0.0;
-        return Map.of(
-                "studentId", studentId,
-                "studentName", student.getFullName(),
-                "studentCode", student.getStudentCode(),
-                "totalCredits", totalCredits,
-                "cpa", cpa,
-                "academicStatus", getAcademicStatus(cpa)
-        );
+
+        Map<String, Object> result = new java.util.HashMap<>();
+        result.put("studentId", studentId);
+        result.put("studentName", student.getFullName());
+        result.put("studentCode", student.getStudentCode());
+        result.put("totalCredits", totalCredits);
+        result.put("cpa", cpa);
+        result.put("academicStatus", getAcademicStatus(cpa));
+
+        return result;
     }
     //Xac dinh xep loai hoc luc
     private String getAcademicStatus(double gpa) {
@@ -199,5 +209,56 @@ public class GradeService {
             throw new RuntimeException("Không tìm thấy điểm");
         }
         gradeRepo.deleteById(id);
+    }
+
+    //Tìm sinh viên đạt điểm A cho một môn học cụ thể
+    public List<Map<String, Object>> findStudentsWithGradeA(Long courseId) {
+        List<Grade> courseGrades = gradeRepo.findByCourseId(courseId);
+        List<Map<String, Object>> studentsWithGradeA = new ArrayList<>();
+
+        for (Grade grade : courseGrades) {
+            if (grade.getScore() != null && grade.getScore() >= 8.5) { // Điểm A từ 8.5 trở lên
+                Student student = grade.getStudent();
+                // Sử dụng new HashMap thay vì Map.of để tránh lỗi khi có giá trị null
+                Map<String, Object> studentData = new java.util.HashMap<>();
+                studentData.put("studentId", student.getId());
+                studentData.put("studentCode", student.getStudentCode());
+                studentData.put("studentName", student.getFullName());
+                studentData.put("score", grade.getScore());
+                studentData.put("letterGrade", "A");
+                studentsWithGradeA.add(studentData);
+            }
+        }
+
+        return studentsWithGradeA;
+    }
+
+    //Tìm sinh viên có học lực xuất sắc trong toàn trường
+    public List<Map<String, Object>> findExcellentStudents() {
+        List<Student> allStudents = studentRepo.findAll();
+        List<Map<String, Object>> excellentStudents = new ArrayList<>();
+
+        for (Student student : allStudents) {
+            try {
+                Map<String, Object> cumulativeRecord = calculateCumulativeGPA(student.getId());
+                Double cpa = (Double) cumulativeRecord.get("cpa");
+
+                if (cpa >= 3.6) { // CPA từ 3.6 trở lên là xuất sắc
+                    Map<String, Object> studentData = new java.util.HashMap<>();
+                    studentData.put("studentId", student.getId());
+                    studentData.put("studentCode", student.getStudentCode());
+                    studentData.put("studentName", student.getFullName());
+                    studentData.put("cpa", cpa);
+                    studentData.put("totalCredits", cumulativeRecord.get("totalCredits"));
+                    studentData.put("academicStatus", "Xuất sắc");
+                    excellentStudents.add(studentData);
+                }
+            } catch (Exception e) {
+                // Nếu không thể tính CPA cho sinh viên này (có thể do không có điểm), bỏ qua
+                System.out.println("Không thể tính CPA cho sinh viên ID=" + student.getId() + ": " + e.getMessage());
+            }
+        }
+
+        return excellentStudents;
     }
 }
