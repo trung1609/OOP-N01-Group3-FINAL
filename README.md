@@ -87,9 +87,21 @@ Lớp:  Grade
 
 + Add()
 + Update()
+
   +Delete()
 
 ## Class Diagram
 
 
-Link repo: https://github.com/trung1609/OOP-N01-Group3-FINAL.git (Liên kết đến một trang bên ngoài.)
+Link repo: https://github.com/trung1609/OOP-N01-Group3-FINAL.git 
+
+  UMLL
+UML Class Diagram
+
+(https://github.com/user-attachments/assets/20e79c7d-373e-43f9-943a-6a74d715b869)
+
+
+  Link repo: https://github.com/trung1609/OOP-N01-Group3-FINAL.git (Liên kết đến một trang bên ngoài.)
+
+https://github.com/trung1609/OOP-N01-Group3-FINAL/tree/Trung
+
