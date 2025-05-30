@@ -96,7 +96,7 @@ Link repo: https://github.com/trung1609/OOP-N01-Group3-FINAL.git
   UMLL
 UML Class Diagram
 
-![Screenshot 2025-05-30 094508](https://github.com/user-attachments/assets/b190be0b-86e1-4b6f-9eef-b9be78ab271d)
+![Class Diagram](https://github.com/user-attachments/assets/20e79c7d-373e-43f9-943a-6a74d715b869)
 
 
 
