@@ -98,6 +98,10 @@ UML Class Diagram
 
 ![Class Diagram](https://github.com/user-attachments/assets/20e79c7d-373e-43f9-943a-6a74d715b869)
 
+UML Sequence Diagram Quan Ly Khoa Hoc
+![UML sequence diagram](https://github.com/user-attachments/assets/a3636082-4404-401b-8095-dbb32cd86b15)
+
+
 
 
   Link repo: https://github.com/trung1609/OOP-N01-Group3-FINAL.git
