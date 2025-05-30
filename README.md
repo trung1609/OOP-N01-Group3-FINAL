@@ -4,8 +4,6 @@
 ### - Vũ Minh Trung MSV: 23010361
 ### - Nguyễn Tường Hưng MSV: 23010439
 
-# Giao diện: Java Spring Boot
-
 ## Mô tả dự án
 Hệ thống quản lý sinh viên với các chức năng cơ bản về quản lý thông tin sinh viên, môn học và điểm số.
 
@@ -41,7 +39,7 @@ Sử dụng JUnit và Spring Boot Test để kiểm thử các chức năng:
 ## Quản Lý
 1. Student: Quản lý thông tin sinh viên
 - Thêm mới, chỉnh sửa, xóa thông tin sinh viên
-- Liệt kê danh sách sinh viên (VD: lớp hoặc điểm trung bình)
+- Liệt kê danh sách sinh viên 
 
 2. Course: Quản lí thông tin môn học
 - Tạo mới, chỉnh sửa, xóa môn học
@@ -98,10 +96,14 @@ Link repo: https://github.com/trung1609/OOP-N01-Group3-FINAL.git
   UMLL
 UML Class Diagram
 
-(https://github.com/user-attachments/assets/20e79c7d-373e-43f9-943a-6a74d715b869)
+![Class Diagram](https://github.com/user-attachments/assets/20e79c7d-373e-43f9-943a-6a74d715b869)
+
+UML Sequence Diagram Quan Ly Khoa Hoc
+![UML sequence diagram](https://github.com/user-attachments/assets/a3636082-4404-401b-8095-dbb32cd86b15)
 
 
-  Link repo: https://github.com/trung1609/OOP-N01-Group3-FINAL.git (Liên kết đến một trang bên ngoài.)
 
-https://github.com/trung1609/OOP-N01-Group3-FINAL/tree/Trung
+
+  Link repo: https://github.com/trung1609/OOP-N01-Group3-FINAL.git
+
 
