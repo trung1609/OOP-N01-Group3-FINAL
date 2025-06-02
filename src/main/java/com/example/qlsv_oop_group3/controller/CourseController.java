@@ -43,20 +43,5 @@ public class CourseController {
     public ResponseEntity<Course> getCourseByCode(@PathVariable String courseCode){
         return ResponseEntity.ok(courseService.findByCourseCode(courseCode));
     }
-    // Tìm kiếm theo tên, tín chỉ hoặc học kỳ
-    @GetMapping("/search")
-    public ResponseEntity<List<Course>> searchCourse(
-            @RequestParam(required = false) String name,
-            @RequestParam(required = false) Integer credit,
-            @RequestParam(required = false) String semester){
-        if(name != null){
-            return ResponseEntity.ok(courseService.findByCourseName(name));
-        }else if(credit != null){
-            return ResponseEntity.ok(courseService.findByCredit(credit));
-        }else if(semester != null){
-            return ResponseEntity.ok(courseService.findCourseBySemester(semester));
-        }
-        return ResponseEntity.ok(courseService.getAllCourse());
-    }
 
 }

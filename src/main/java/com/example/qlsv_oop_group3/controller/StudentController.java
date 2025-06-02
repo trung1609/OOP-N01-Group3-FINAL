@@ -19,16 +19,6 @@ public class StudentController {
     public ResponseEntity<Student> createStudent(@RequestBody Student student){
         return ResponseEntity.ok(studentService.createStudent(student));
     }
-    //Lay sinh vien theo ten
-    @GetMapping("/search")
-    public ResponseEntity<List<Student>> searchStudents(
-            @RequestParam(required = false) String name,
-            @RequestParam(required = false) String studentCode) {
-        if (name != null) {
-            return ResponseEntity.ok(studentService.findStudentsByName(name));
-        }
-        return ResponseEntity.ok(studentService.getAllStudent());
-    }
 
     //Lay tat ca sinh vien
     @GetMapping
