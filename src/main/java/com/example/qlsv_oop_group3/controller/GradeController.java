@@ -89,12 +89,6 @@ public class GradeController {
         return ResponseEntity.ok(gradeService.getSemesterAcademicRecord(studentId, semester));
     }
 
-    //Lay diem trung binh tich luy CGPA
-    @GetMapping("/academic-record/cumulative")
-    public ResponseEntity<Map<String, Object>> getCumulativeRecord(@RequestParam Long studentId) {
-        return ResponseEntity.ok(gradeService.calculateCumulativeGPA(studentId));
-    }
-
     //Xoa diem theo id
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteGrade(@PathVariable Long id) {
