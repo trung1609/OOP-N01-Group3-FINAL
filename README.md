@@ -71,7 +71,7 @@ UML Sequence Diagram Quan Ly Sinh Vien
 
 UML Sequence Diagram Quan Ly Diem
 ![UML sequence diagram QLD](https://github.com/user-attachments/assets/9a733d57-72b4-4cf8-8000-8b18cb53d477)
-e Diagram Quan Ly Diem
+
 
 
 
