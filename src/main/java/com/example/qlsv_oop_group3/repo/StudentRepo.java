@@ -11,9 +11,6 @@ import java.util.Optional;
 
 @Repository
 public interface StudentRepo extends JpaRepository<Student, Long> {
-    Optional<Student> findByStudentCode(String studentCode);
-    Optional<Student> findByEmail(String email);
-    List<Student> findAllByFullNameContainingIgnoreCase(String fullName);
     boolean existsByStudentCode(String studentCode);
     boolean existsByEmail(String email);
     //Tìm sv theo điểm tb của 1 môn học cụ thể

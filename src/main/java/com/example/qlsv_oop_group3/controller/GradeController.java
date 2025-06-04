@@ -5,8 +5,6 @@ import com.example.qlsv_oop_group3.service.CourseService;
 import com.example.qlsv_oop_group3.service.GradeService;
 import com.example.qlsv_oop_group3.service.StudentService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;

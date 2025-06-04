@@ -13,8 +13,6 @@ import java.util.Optional;
 public interface CourseRepo extends JpaRepository<Course, Long> {
     //Tìm theo mã môn học
     Optional<Course> findByCourseCode(String courseCode);
-    //Tìm theo tên môn học không phân biệt chữ hoa và chữ thường
-    List<Course> findAllByCourseNameContainingIgnoreCase(String courseName);
     boolean existsByCourseCode(String courseCode);
     List<Course> findByCredit(Integer credit);
     //Tìm khóa học theo học kỳ

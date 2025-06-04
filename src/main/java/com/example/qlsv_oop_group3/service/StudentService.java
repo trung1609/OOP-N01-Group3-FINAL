@@ -15,19 +15,12 @@ public class StudentService {
         this.studentRepo = studentRepo;
         this.gradeRepo = gradeRepo;
     }
-
-    public static Object getAllStudents() {
-        return null;
-    }
     public Student createStudent(Student student){
         checkDuplicateStudent(student);
         return studentRepo.save(student);
     }
     public List<Student> getAllStudent(){
         return studentRepo.findAll();
-    }
-    public List<Student> findStudentsByName(String name) {
-        return studentRepo.findAllByFullNameContainingIgnoreCase(name);
     }
 
     public Student getStudentById(Long id){
