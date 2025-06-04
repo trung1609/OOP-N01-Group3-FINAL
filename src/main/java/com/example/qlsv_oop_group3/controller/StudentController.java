@@ -19,6 +19,10 @@ public class StudentController {
     public ResponseEntity<Student> createStudent(@RequestBody Student student){
         return ResponseEntity.ok(studentService.createStudent(student));
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> ab9978fec5698f8a1fb8869a7716ac32ee3cc59b
     //Lay tat ca sinh vien
     @GetMapping
     public ResponseEntity<List<Student>> getAllStudents(){
