@@ -81,14 +81,6 @@ public class GradeController {
         return ResponseEntity.ok(gradeDTOs);
     }
 
-    //Lay bang diem theo hoc ky
-    @GetMapping("/academic-record/semester/{studentId}")
-    public ResponseEntity<Map<String, Object>> getSemesterRecord(
-            @RequestParam Long studentId,
-            @RequestParam String semester) {
-        return ResponseEntity.ok(gradeService.getSemesterAcademicRecord(studentId, semester));
-    }
-
     //Xoa diem theo id
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteGrade(@PathVariable Long id) {
