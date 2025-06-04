@@ -99,7 +99,17 @@ UML Class Diagram
 ![Class Diagram](https://github.com/user-attachments/assets/20e79c7d-373e-43f9-943a-6a74d715b869)
 
 UML Sequence Diagram Quan Ly Khoa Hoc
-![UML sequence diagram](https://github.com/user-attachments/assets/a3636082-4404-401b-8095-dbb32cd86b15)
+![UML sequence diagram](https://github.com/user-attachments/assets/0be6d0fe-af86-4ed2-af91-6256d02f2be6)
+
+UML Sequence Diagram Quan Ly Sinh Vien
+![UML sequence diagram QLSV](https://github.com/user-attachments/assets/ff34fe07-0a2f-4cab-86e4-6b11972a15a4)
+
+UML Sequence Diagram Quan Ly Diem
+![UML sequence diagram QLD](https://github.com/user-attachments/assets/544b80a3-8054-4299-b3c0-cf35c24afa51)
+
+
+
+
 
 
 
