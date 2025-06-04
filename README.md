@@ -52,41 +52,6 @@ Sử dụng JUnit và Spring Boot Test để kiểm thử các chức năng:
 - Dữ liệu được lưu dưới dạng file nhị phân
 - Trong quá trình làm việc , dữ liệu được lưu tạm bằng các Collection: ArrayList<SinhVien>, HashMap<String, LopHoc>, LinkedList<MonHoc>
 
-Nội dung 2:
-SinhVien
-Attributes:
-
-- maSinhVien : String
-
-- hoTen : String
-- diem: int
-
-Methods:
-
-+ Add()
-+ Update()
-+ Delete()
-  Khóa học
-
-- Mã khóa học : int
-- Tên môn học : string
-- Tín chỉ : int
-  Methods:
-
-+ Add()
-+ Update()
-  +Delete()
-
-
-Lớp:  Grade
-- Điểm : int
-- Học kì : int
-  Methods:
-
-+ Add()
-+ Update()
-
-  +Delete()
 
 ## Class Diagram
 
