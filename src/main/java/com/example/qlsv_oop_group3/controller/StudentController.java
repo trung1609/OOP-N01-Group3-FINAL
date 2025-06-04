@@ -16,8 +16,9 @@ public class StudentController {
 
 
     @PostMapping
-    public ResponseEntity<Student> createStudent(@RequestBody Student student){
-        return ResponseEntity.ok(studentService.createStudent(student));
+    public ResponseEntity<Student> createStudent(@RequestBody Student student) {
+        Student savedStudent = studentService.createStudent(student);
+        return ResponseEntity.ok(savedStudent);
     }
     //Lay tat ca sinh vien
     @GetMapping

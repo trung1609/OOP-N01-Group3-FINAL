@@ -19,8 +19,8 @@ public class StudentService {
     public static Object getAllStudents() {
         return null;
     }
-
     public Student createStudent(Student student){
+        checkDuplicateStudent(student);
         return studentRepo.save(student);
     }
     public List<Student> getAllStudent(){
@@ -47,5 +47,13 @@ public class StudentService {
     public void deleteStudentById(Long id){
 
         studentRepo.deleteById(id);
+    }
+    public void checkDuplicateStudent(Student student) {
+        if (studentRepo.existsByStudentCode(student.getStudentCode())) {
+            throw new RuntimeException("Mã sinh viên đã tồn tại");
+        }
+        if (studentRepo.existsByEmail(student.getEmail())) {
+            throw new RuntimeException("Email đã tồn tại");
+        }
     }
 }
