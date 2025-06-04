@@ -30,7 +30,7 @@ public class GradeController {
     @PostMapping("/student/{studentId}/course/{courseId}")
     public ResponseEntity<Grade> addGrade(
             @RequestBody Grade grade,
-            @PathVariable Long studentId,
+            @PathVariable Long studentId,//lấy giá trị từ URL path
             @PathVariable Long courseId) {
         return ResponseEntity.ok(gradeService.addGrade(grade, studentId, courseId));
     }
@@ -91,7 +91,7 @@ public class GradeController {
     //Cap nhat diem theo ID (REST API endpoint)
     @PutMapping("/{id}")
     public ResponseEntity<Grade> updateGradeApi(
-            @PathVariable Long id,
+            @PathVariable Long id,//lấy giá trị từ URL path
             @RequestBody Grade grade) {
         return ResponseEntity.ok(gradeService.updateGrade(id, grade));
     }

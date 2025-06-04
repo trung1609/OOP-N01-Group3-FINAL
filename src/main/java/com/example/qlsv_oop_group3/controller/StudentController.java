@@ -19,10 +19,6 @@ public class StudentController {
     public ResponseEntity<Student> createStudent(@RequestBody Student student){
         return ResponseEntity.ok(studentService.createStudent(student));
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> ab9978fec5698f8a1fb8869a7716ac32ee3cc59b
     //Lay tat ca sinh vien
     @GetMapping
     public ResponseEntity<List<Student>> getAllStudents(){
@@ -37,7 +33,7 @@ public class StudentController {
     //Lay sinh vien da hoc trong 1 hoc ky nao do
     @GetMapping("/semester/{semester}")
     public ResponseEntity<List<Student>> getStudentsBySemester(
-            @PathVariable String semester) {
+            @PathVariable String semester) {//lấy giá trị từ URL path
         return ResponseEntity.ok(studentService.findStudentsBySemester(semester));
     }
 
