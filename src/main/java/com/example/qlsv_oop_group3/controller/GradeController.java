@@ -95,4 +95,17 @@ public class GradeController {
             @RequestBody Grade grade) {
         return ResponseEntity.ok(gradeService.updateGrade(id, grade));
     }
+
+
+    // Lấy sinh viên có điểm A trong một khóa học cụ thể
+    @GetMapping("/course/{courseId}/gradeA")
+    public ResponseEntity<List<Map<String, Object>>> getStudentsWithGradeA(@PathVariable Long courseId) {
+        return ResponseEntity.ok(gradeService.findStudentsWithGradeA(courseId));
+    }
+
+    // Lấy tất cả sinh viên có điểm xuất sắc
+    @GetMapping("/excellent")
+    public ResponseEntity<List<Map<String, Object>>> getExcellentStudents() {
+        return ResponseEntity.ok(gradeService.findExcellentStudents());
+    }
 }
