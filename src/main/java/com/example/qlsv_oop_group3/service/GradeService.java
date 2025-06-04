@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class GradeService {
@@ -214,51 +215,45 @@ public class GradeService {
     //Tìm sinh viên đạt điểm A cho một môn học cụ thể
     public List<Map<String, Object>> findStudentsWithGradeA(Long courseId) {
         List<Grade> courseGrades = gradeRepo.findByCourseId(courseId);
-        List<Map<String, Object>> studentsWithGradeA = new ArrayList<>();
-
-        for (Grade grade : courseGrades) {
-            if (grade.getScore() != null && grade.getScore() >= 8.5) { // Điểm A từ 8.5 trở lên
-                Student student = grade.getStudent();
-                // Sử dụng new HashMap thay vì Map.of để tránh lỗi khi có giá trị null
-                Map<String, Object> studentData = new java.util.HashMap<>();
-                studentData.put("studentId", student.getId());
-                studentData.put("studentCode", student.getStudentCode());
-                studentData.put("studentName", student.getFullName());
-                studentData.put("score", grade.getScore());
-                studentData.put("letterGrade", "A");
-                studentsWithGradeA.add(studentData);
-            }
-        }
-
+        List<Map<String, Object>> studentsWithGradeA = courseGrades.stream()
+                .filter(grade -> grade.getScore() != null && grade.getScore() >= 8.5)
+                .map(grade -> {
+                    Student student = grade.getStudent();
+                    Map<String, Object> studentData = new java.util.HashMap<>();
+                    studentData.put("studentId", student.getId());
+                    studentData.put("studentCode", student.getStudentCode());
+                    studentData.put("studentName", student.getFullName());
+                    studentData.put("score", grade.getScore());
+                    studentData.put("letterGrade", "A");
+                    return studentData;
+                })
+                .collect(Collectors.toList());
         return studentsWithGradeA;
     }
 
     //Tìm sinh viên có học lực xuất sắc trong toàn trường
     public List<Map<String, Object>> findExcellentStudents() {
-        List<Student> allStudents = studentRepo.findAll();
-        List<Map<String, Object>> excellentStudents = new ArrayList<>();
-
-        for (Student student : allStudents) {
-            try {
-                Map<String, Object> cumulativeRecord = calculateCumulativeGPA(student.getId());
-                Double cpa = (Double) cumulativeRecord.get("cpa");
-
-                if (cpa >= 3.6) { // CPA từ 3.6 trở lên là xuất sắc
-                    Map<String, Object> studentData = new java.util.HashMap<>();
-                    studentData.put("studentId", student.getId());
-                    studentData.put("studentCode", student.getStudentCode());
-                    studentData.put("studentName", student.getFullName());
-                    studentData.put("cpa", cpa);
-                    studentData.put("totalCredits", cumulativeRecord.get("totalCredits"));
-                    studentData.put("academicStatus", "Xuất sắc");
-                    excellentStudents.add(studentData);
-                }
-            } catch (Exception e) {
-                // Nếu không thể tính CPA cho sinh viên này (có thể do không có điểm), bỏ qua
-                System.out.println("Không thể tính CPA cho sinh viên ID=" + student.getId() + ": " + e.getMessage());
-            }
-        }
-
-        return excellentStudents;
+        return studentRepo.findAll().stream()
+                .map(student -> {
+                    try {
+                        Map<String, Object> cumulativeRecord = calculateCumulativeGPA(student.getId());
+                        Double cpa = (Double) cumulativeRecord.get("cpa");
+                        if (cpa != null && cpa >= 3.6) {
+                            Map<String, Object> studentData = new java.util.HashMap<>();
+                            studentData.put("studentId", student.getId());
+                            studentData.put("studentCode", student.getStudentCode());
+                            studentData.put("studentName", student.getFullName());
+                            studentData.put("cpa", cpa);
+                            studentData.put("totalCredits", cumulativeRecord.get("totalCredits"));
+                            studentData.put("academicStatus", "Xuất sắc");
+                            return studentData;
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Không thể tính CPA cho sinh viên ID=" + student.getId() + ": " + e.getMessage());
+                    }
+                    return null;
+                })
+                .filter(java.util.Objects::nonNull)
+                .collect(Collectors.toList());
     }
 }
