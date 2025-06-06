@@ -74,43 +74,59 @@ UML Sequence Diagram Quan Ly Diem
 
 ## Câu 2:
 
-private String getAcademicStatus(double gpa) {
+public List<Map<String, Object>> findExcellentStudents() {
 
-if (gpa >= 3.6) return "Xuất sắc";
+    return studentRepo.findAll().stream()
+    
+            .map(student -> {
+            
+                try {
+                
+                    Map<String, Object> cumulativeRecord = calculateCumulativeGPA(student.getId());
+                    
+                    Double cpa = (Double) cumulativeRecord.get("cpa");
+                    
+                    if (cpa != null && cpa >= 3.6) {
+                    
+                        Map<String, Object> studentData = new java.util.HashMap<>();
+                        
+                        studentData.put("studentId", student.getId());
+                        
+                        studentData.put("studentCode", student.getStudentCode());
+                        
+                        studentData.put("studentName", student.getFullName());
+                        
+                        studentData.put("cpa", cpa);
+                        
+                        studentData.put("totalCredits", cumulativeRecord.get("totalCredits"));
+                        
+                        studentData.put("academicStatus", "Xuất sắc");
+                        
+                        return studentData;
+                    }
+                    
+                } catch (Exception e) {
+                    
+                    System.out.println("Không thể tính CPA cho sinh viên ID=" + student.getId() + ": " + e.getMessage());
+                }
+                  
+                return null;
+            
+            })
+            
+            .filter(java.util.Objects::nonNull)
+            
+            .collect(Collectors.toList());
 
-if (gpa >= 3.2) return "Giỏi";
-
-if (gpa >= 2.5) return "Khá";
-
-if (gpa >= 2.0) return "Trung bình";
-
-return "Yếu";
 }
 
 ### Miêu tả phương thức:
 
-Phương thức: getAcademicStatus(double gpa)
-
-Phương thức private này dùng để xác định xếp loại học lực của sinh viên dựa trên điểm trung bình tích lũy (GPA). Nó trả về một chuỗi thể hiện học lực như sau:
-
-
-"Xuất sắc" nếu GPA ≥ 3.6
-
-"Giỏi" nếu GPA ≥ 3.2
-
-"Khá" nếu GPA ≥ 2.5
-
-"Trung bình" nếu GPA ≥ 2.0
-
-"Yếu" nếu GPA < 2.0
-
-Phương thức này được sử dụng để phân loại kết quả học tập của sinh viên theo chuẩn của trường đại học.
+Phương thức findExcellentStudents() dùng để lấy danh sách các sinh viên có học lực xuất sắc ("Xuất sắc") trong toàn trường. Phương thức này tính điểm trung bình tích lũy (CPA) cho từng sinh viên và chọn ra những sinh viên có CPA lớn hơn hoặc bằng 3.6. Kết quả trả về là danh sách các bản ghi chứa thông tin sinh viên và học lực của sinh viên đó.
 
 Kết quả chạy API:
 
-![Screenshot 2025-06-06 135301](https://github.com/user-attachments/assets/55b3e658-2722-4bbd-b35f-bff8653dd2b3)
-
-
+![Screenshot 2025-06-06 140232](https://github.com/user-attachments/assets/38529047-f44a-4c3f-ab8a-c5f421103525)
 
 
 
