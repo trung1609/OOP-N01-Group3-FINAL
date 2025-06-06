@@ -72,8 +72,6 @@ UML Sequence Diagram Quan Ly Sinh Vien
 UML Sequence Diagram Quan Ly Diem
 ![UML sequence diagram QLD](https://github.com/user-attachments/assets/9a733d57-72b4-4cf8-8000-8b18cb53d477)
 
-
-
 ## Câu 2:
 
 private String getAcademicStatus(double gpa) {
@@ -109,6 +107,10 @@ Phương thức private này dùng để xác định xếp loại học lực c
 Phương thức này được sử dụng để phân loại kết quả học tập của sinh viên theo chuẩn của trường đại học.
 
 Kết quả chạy API:
+
+![Screenshot 2025-06-06 135301](https://github.com/user-attachments/assets/55b3e658-2722-4bbd-b35f-bff8653dd2b3)
+
+
 
 
 
