@@ -87,7 +87,7 @@ if (gpa >= 2.0) return "Trung bình";
 return "Yếu";
 }
 
-Miêu tả phương thức:
+### Miêu tả phương thức:
 
 Phương thức: getAcademicStatus(double gpa)
 
