@@ -131,6 +131,52 @@ Kết quả chạy API:
 
 
 
+### Hàm 2:
+
+public List<Map<String, Object>> findStudentsWithGradeA(Long courseId) {
+
+    List<Grade> courseGrades = gradeRepo.findByCourseId(courseId);
+
+    List<Map<String, Object>> studentsWithGradeA = courseGrades.stream()
+
+            .filter(grade -> grade.getScore() != null && grade.getScore() >= 8.5)
+
+            .map(grade -> {
+
+                Student student = grade.getStudent();
+
+                Map<String, Object> studentData = new java.util.HashMap<>();
+
+                studentData.put("studentId", student.getId());
+
+                studentData.put("studentCode", student.getStudentCode());
+
+                studentData.put("studentName", student.getFullName());
+
+                studentData.put("score", grade.getScore());
+
+                studentData.put("letterGrade", "A");
+
+                return studentData;
+
+            })
+
+            .collect(Collectors.toList());
+
+    return studentsWithGradeA;
+
+}
+
+### Miêu tả phương thức:
+
+Phương thức findStudentsWithGradeA(Long courseId) dùng để lấy danh sách sinh viên đạt điểm A (điểm số ≥ 8.5) cho một môn học cụ thể. Phương thức này lọc các điểm của môn học theo courseId, chọn ra những điểm số từ 8.5 trở lên và trả về danh sách các bản ghi chứa thông tin sinh viên cùng điểm số của họ.
+
+Kết quả chạy API:
+
+
+
+![image](https://github.com/user-attachments/assets/d68c31f8-ad37-437a-a6d9-75ba178e08e1)
+
 
 
 
