@@ -74,6 +74,49 @@ UML Sequence Diagram Quan Ly Diem
 
 
 
+## Câu 2:
+
+private String getAcademicStatus(double gpa) {
+
+if (gpa >= 3.6) return "Xuất sắc";
+
+if (gpa >= 3.2) return "Giỏi";
+
+if (gpa >= 2.5) return "Khá";
+
+if (gpa >= 2.0) return "Trung bình";
+
+return "Yếu";
+}
+
+Miêu tả phương thức:
+
+Phương thức: getAcademicStatus(double gpa)
+
+Phương thức private này dùng để xác định xếp loại học lực của sinh viên dựa trên điểm trung bình tích lũy (GPA). Nó trả về một chuỗi thể hiện học lực như sau:
+
+
+"Xuất sắc" nếu GPA ≥ 3.6
+
+"Giỏi" nếu GPA ≥ 3.2
+
+"Khá" nếu GPA ≥ 2.5
+
+"Trung bình" nếu GPA ≥ 2.0
+
+"Yếu" nếu GPA < 2.0
+
+Phương thức này được sử dụng để phân loại kết quả học tập của sinh viên theo chuẩn của trường đại học.
+
+Kết quả chạy API:
+
+
+
+
+
+
+
+
 
 
 
