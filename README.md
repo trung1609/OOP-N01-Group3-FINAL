@@ -75,6 +75,60 @@ UML Sequence Diagram Quan Ly Diem
 ## Câu 2:
 
 
+public List<Map<String, Object>> findExcellentStudents() {
+
+    return studentRepo.findAll().stream()
+    
+            .map(student -> {
+            
+                try {
+                
+                    Map<String, Object> cumulativeRecord = calculateCumulativeGPA(student.getId());
+                    
+                    Double cpa = (Double) cumulativeRecord.get("cpa");
+                    
+                    if (cpa != null && cpa >= 3.6) {
+                    
+                        Map<String, Object> studentData = new java.util.HashMap<>();
+                        
+                        studentData.put("studentId", student.getId());
+                        
+                        studentData.put("studentCode", student.getStudentCode());
+                        
+                        studentData.put("studentName", student.getFullName());
+                        
+                        studentData.put("cpa", cpa);
+                        
+                        studentData.put("totalCredits", cumulativeRecord.get("totalCredits"));
+                        
+                        studentData.put("academicStatus", "Xuất sắc");
+                        
+                        return studentData;
+                    }
+                    
+                } catch (Exception e) {
+                    
+                    System.out.println("Không thể tính CPA cho sinh viên ID=" + student.getId() + ": " + e.getMessage());
+                }
+                  
+                return null;
+            
+            })
+            
+            .filter(java.util.Objects::nonNull)
+            
+            .collect(Collectors.toList());
+            
+}
+
+### Miêu tả phương thức:
+
+Phương thức findExcellentStudents() dùng để lấy danh sách các sinh viên có học lực xuất sắc ("Xuất sắc") trong toàn trường. Phương thức này tính điểm trung bình tích lũy (CPA) cho từng sinh viên và chọn ra những sinh viên có CPA lớn hơn hoặc bằng 3.6. Kết quả trả về là danh sách các bản ghi chứa thông tin sinh viên và học lực của sinh viên đó.
+
+Kết quả chạy API:
+
+![Screenshot 2025-06-06 140232](https://github.com/user-attachments/assets/38529047-f44a-4c3f-ab8a-c5f421103525)
+
 
 
 
