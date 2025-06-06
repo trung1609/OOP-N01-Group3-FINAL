@@ -75,7 +75,6 @@ UML Sequence Diagram Quan Ly Diem
 ## Câu 2:
 
 public List<Map<String, Object>> findExcellentStudents() {
-
     return studentRepo.findAll().stream()
     
             .map(student -> {
@@ -117,7 +116,6 @@ public List<Map<String, Object>> findExcellentStudents() {
             .filter(java.util.Objects::nonNull)
             
             .collect(Collectors.toList());
-
 }
 
 ### Miêu tả phương thức:
