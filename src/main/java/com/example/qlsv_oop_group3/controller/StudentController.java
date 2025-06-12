@@ -3,50 +3,58 @@ package com.example.qlsv_oop_group3.controller;
 import com.example.qlsv_oop_group3.entity.Student;
 import com.example.qlsv_oop_group3.service.StudentService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
-@RestController
-@RequestMapping("/api/student")
+@Controller
+@RequestMapping("/students")
 @RequiredArgsConstructor
 public class StudentController {
     private final StudentService studentService;
 
+    @GetMapping
+    public String getAllStudents(Model model) {
+        model.addAttribute("students", studentService.getAllStudent());
+        model.addAttribute("student", new Student());
+        return "students";
+    }
 
     @PostMapping
-    public ResponseEntity<Student> createStudent(@RequestBody Student student) {
-        Student savedStudent = studentService.createStudent(student);
-        return ResponseEntity.ok(savedStudent);
-    }
-    //Lay tat ca sinh vien
-    @GetMapping
-    public ResponseEntity<List<Student>> getAllStudents(){
-        return ResponseEntity.ok(studentService.getAllStudent());
-    }
-
-    //Lay sinh vien theo id
-    @GetMapping("/{id}")
-    public ResponseEntity<Student> getStudentById(@PathVariable Long id){
-        return ResponseEntity.ok(studentService.getStudentById(id));
-    }
-    //Lay sinh vien da hoc trong 1 hoc ky nao do
-    @GetMapping("/semester/{semester}")
-    public ResponseEntity<List<Student>> getStudentsBySemester(
-            @PathVariable String semester) {//lấy giá trị từ URL path
-        return ResponseEntity.ok(studentService.findStudentsBySemester(semester));
+    public String createStudent(@ModelAttribute Student student, Model model) {
+        try {
+            studentService.createStudent(student);
+            return "redirect:/students";
+        } catch (Exception e) {
+            model.addAttribute("error", e.getMessage());
+            model.addAttribute("students", studentService.getAllStudent());
+            model.addAttribute("student", student);
+            return "students";
+        }
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Student> updateStudent(@PathVariable Long id, @RequestBody Student student){
-        return ResponseEntity.ok(studentService.updateStudent(id, student));
+    @GetMapping("/edit/{id}")
+    public String editStudent(@PathVariable Long id, Model model) {
+        model.addAttribute("student", studentService.getStudentById(id));
+        model.addAttribute("students", studentService.getAllStudent());
+        return "students";
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteStudent(@PathVariable Long id){
+    @PostMapping("/update/{id}")
+    public String updateStudent(@PathVariable Long id, @ModelAttribute Student student) {
+        studentService.updateStudent(id, student);
+        return "redirect:/students";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteStudent(@PathVariable Long id) {
         studentService.deleteStudentById(id);
-        return ResponseEntity.ok().build();
+        return "redirect:/students";
     }
 
+    @GetMapping("/semester/{semester}")
+    public String getStudentsBySemester(@PathVariable String semester, Model model) {
+        model.addAttribute("students", studentService.findStudentsBySemester(semester));
+        return "students";
+    }
 }

@@ -3,44 +3,58 @@ package com.example.qlsv_oop_group3.controller;
 import com.example.qlsv_oop_group3.entity.Course;
 import com.example.qlsv_oop_group3.service.CourseService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
-@RestController
+@Controller
 @RequiredArgsConstructor
-@RequestMapping("/api/course")
+@RequestMapping("/courses")
 public class CourseController {
     private final CourseService courseService;
 
-    @PostMapping
-    public ResponseEntity<Course> createCourse(@RequestBody Course course){
-        return ResponseEntity.ok(courseService.createCourse(course));
-    }
-    //Lay toan bo khoa hoc
     @GetMapping
-    public ResponseEntity<List<Course>> getAllCourses(){
-        return ResponseEntity.ok(courseService.getAllCourse());
-    }
-    //Lay khoa hoc theo id
-    @GetMapping("/{id}")
-    public ResponseEntity<Course> getCourse(@PathVariable Long id){
-        return ResponseEntity.ok(courseService.getCourseById(id));
-    }
-    @PutMapping("/{id}")
-    public ResponseEntity<Course> updateCourse(@PathVariable Long id, @RequestBody Course course){
-        return ResponseEntity.ok(courseService.updateCourse(id, course));
-    }
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCourse(@PathVariable Long id){
-        courseService.deleteCourseById(id);
-        return ResponseEntity.ok().build();
-    }
-    //Tìm môn học theo mã môn học
-    @GetMapping("/code/{courseCode}")
-    public ResponseEntity<Course> getCourseByCode(@PathVariable String courseCode){
-        return ResponseEntity.ok(courseService.findByCourseCode(courseCode));
+    public String getAllCourses(Model model) {
+        model.addAttribute("courses", courseService.getAllCourse());
+        model.addAttribute("course", new Course());
+        return "courses";
     }
 
+    @PostMapping
+    public String createCourse(@ModelAttribute Course course, Model model) {
+        try {
+            courseService.createCourse(course);
+            return "redirect:/courses";
+        } catch (Exception e) {
+            model.addAttribute("error", e.getMessage());
+            model.addAttribute("courses", courseService.getAllCourse());
+            model.addAttribute("course", course);
+            return "courses";
+        }
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editCourse(@PathVariable Long id, Model model) {
+        model.addAttribute("course", courseService.getCourseById(id));
+        model.addAttribute("courses", courseService.getAllCourse());
+        return "courses";
+    }
+
+    @PostMapping("/update/{id}")
+    public String updateCourse(@PathVariable Long id, @ModelAttribute Course course) {
+        courseService.updateCourse(id, course);
+        return "redirect:/courses";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteCourse(@PathVariable Long id) {
+        courseService.deleteCourseById(id);
+        return "redirect:/courses";
+    }
+
+    @GetMapping("/code/{courseCode}")
+    public String getCourseByCode(@PathVariable String courseCode, Model model) {
+        model.addAttribute("courses", java.util.List.of(courseService.findByCourseCode(courseCode)));
+        return "courses";
+    }
 }
