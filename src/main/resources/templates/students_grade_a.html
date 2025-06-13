@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sinh viên đạt điểm A</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background: #f8fafc; }
+        nav { background: #2563eb; color: #fff; padding: 14px 24px; }
+        nav a { color: #fff; margin-right: 18px; text-decoration: none; font-weight: 500; }
+        nav a:hover { text-decoration: underline; }
+        h2 { text-align: center; color: #2563eb; margin-top: 24px; }
+        form { background: #fff; border-radius: 10px; box-shadow: 0 2px 8px #0001; padding: 20px; max-width: 500px; margin: 24px auto 16px auto; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+        form select, form button { padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 1rem; }
+        form button { background: #2563eb; color: #fff; border: none; border-radius: 6px; padding: 8px 18px; font-size: 1rem; cursor: pointer; transition: background 0.2s; }
+        form button:hover { background: #1e40af; }
+        table { border-collapse: collapse; width: 95%; margin: 0 auto 32px auto; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px #0001; }
+        th, td { border: none; padding: 10px 14px; text-align: left; }
+        th { background: #2563eb; color: #fff; }
+        tr:nth-child(even) { background: #f1f5f9; }
+        tr:hover { background: #e0e7ef; }
+        a.back { display: inline-block; margin: 0 0 0 24px; color: #2563eb; text-decoration: none; font-weight: 500; }
+        a.back:hover { text-decoration: underline; }
+        @media (max-width: 900px) {
+            form, table { width: 99%; }
+            th, td { font-size: 0.95rem; }
+        }
+        @media (max-width: 600px) {
+            form { flex-direction: column; gap: 8px; }
+            table, th, td { font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <a th:href="@{/students}">Sinh viên</a>
+    <a th:href="@{/courses}">Khóa học</a>
+    <a th:href="@{/grades}">Điểm</a>
+</nav>
+<h2>Danh sách sinh viên đạt điểm A</h2>
+<form th:action="@{/grades/gradeA}" method="get">
+    <select name="courseId" required>
+        <option value="">--Chọn môn học--</option>
+        <option th:each="c : ${courses}" th:value="${c.id}" th:text="${c.courseName + ' (' + c.courseCode + ')'}"
+            th:selected="${courseId != null and courseId == c.id}"></option>
+    </select>
+    <button type="submit">Xem</button>
+</form>
+<table th:if="${gradeAStudents != null}">
+    <thead>
+    <tr>
+        <th>ID</th><th>Mã SV</th><th>Họ tên</th><th>Điểm số</th><th>Điểm chữ</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="s : ${gradeAStudents}">
+        <td th:text="${s.studentId}"></td>
+        <td th:text="${s.studentCode}"></td>
+        <td th:text="${s.studentName}"></td>
+        <td th:text="${s.score}"></td>
+        <td th:text="${s.letterGrade}"></td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/grades}" class="back">Quay lại</a>
+</body>
+</html>

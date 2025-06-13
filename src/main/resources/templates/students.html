@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Quản lý Sinh viên</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background: #f8fafc; }
+        nav { background: #2563eb; color: #fff; padding: 14px 24px; }
+        nav a { color: #fff; margin-right: 18px; text-decoration: none; font-weight: 500; }
+        nav a:hover { text-decoration: underline; }
+        h2 { text-align: center; color: #2563eb; margin-top: 24px; }
+        form { background: #fff; border-radius: 10px; box-shadow: 0 2px 8px #0001; padding: 20px; max-width: 700px; margin: 24px auto 16px auto; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+        form input { padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 1rem; }
+        form button { background: #2563eb; color: #fff; border: none; border-radius: 6px; padding: 8px 18px; font-size: 1rem; cursor: pointer; transition: background 0.2s; }
+        form button:hover { background: #1e40af; }
+        form a button { background: #64748b; }
+        form a button:hover { background: #334155; }
+        table { border-collapse: collapse; width: 95%; margin: 0 auto 32px auto; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px #0001; }
+        th, td { border: none; padding: 10px 14px; text-align: left; }
+        th { background: #2563eb; color: #fff; }
+        tr:nth-child(even) { background: #f1f5f9; }
+        tr:hover { background: #e0e7ef; }
+        .actions a { margin-right: 8px; text-decoration: none; color: #2563eb; font-weight: 500; }
+        .actions a:last-child { color: #dc2626; }
+        .actions a:hover { text-decoration: underline; }
+        .error { color: #dc2626; text-align: center; margin-bottom: 10px; }
+        @media (max-width: 900px) {
+            form, table { width: 99%; }
+            th, td { font-size: 0.95rem; }
+        }
+        @media (max-width: 600px) {
+            form { flex-direction: column; gap: 8px; }
+            table, th, td { font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <a th:href="@{/students}">Sinh viên</a>
+    <a th:href="@{/courses}">Khóa học</a>
+    <a th:href="@{/grades}">Điểm</a>
+</nav>
+<h2>Quản lý Sinh viên</h2>
+<form th:action="@{/students}" th:object="${student}" method="post">
+    <input type="hidden" th:field="*{id}" />
+    <input type="text" th:field="*{fullName}" placeholder="Họ tên" required />
+    <input type="text" th:field="*{studentCode}" placeholder="Mã sinh viên" required />
+    <input type="email" th:field="*{email}" placeholder="Email" required />
+    <input type="text" th:field="*{address}" placeholder="Địa chỉ" required />
+    <input type="date" th:field="*{dateOfBirth}" placeholder="Ngày sinh" required />
+    <button type="submit">Lưu</button>
+    <a th:href="@{/students}"><button type="button">Hủy</button></a>
+</form>
+<div th:if="${error}" class="error" th:text="${error}"></div>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th><th>Họ tên</th><th>Mã SV</th><th>Email</th><th>Địa chỉ</th><th>Ngày sinh</th><th>Thao tác</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="s : ${students}">
+        <td th:text="${s.id}"></td>
+        <td th:text="${s.fullName}"></td>
+        <td th:text="${s.studentCode}"></td>
+        <td th:text="${s.email}"></td>
+        <td th:text="${s.address}"></td>
+        <td th:text="${s.dateOfBirth}"></td>
+        <td class="actions">
+            <a th:href="@{'/students/edit/' + ${s.id}}">Sửa</a>
+            <a th:href="@{'/students/delete/' + ${s.id}}" onclick="return confirm('Xóa sinh viên này?')">Xóa</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

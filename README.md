@@ -74,6 +74,7 @@ UML Sequence Diagram Quan Ly Diem
 
 ## Câu 2:
 
+### Hàm 1:
 
 public List<Map<String, Object>> findExcellentStudents() {
 

@@ -243,6 +243,9 @@ public class GradeService {
                             studentData.put("studentId", student.getId());
                             studentData.put("studentCode", student.getStudentCode());
                             studentData.put("studentName", student.getFullName());
+                            studentData.put("email", student.getEmail());
+                            studentData.put("address", student.getAddress());
+                            studentData.put("dateOfBirth", student.getDateOfBirth());
                             studentData.put("cpa", cpa);
                             studentData.put("totalCredits", cumulativeRecord.get("totalCredits"));
                             studentData.put("academicStatus", "Xuất sắc");
