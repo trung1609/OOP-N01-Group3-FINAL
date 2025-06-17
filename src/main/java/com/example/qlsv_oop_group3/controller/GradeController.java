@@ -94,4 +94,24 @@ public class GradeController {
         model.addAttribute("courses", courseService.getAllCourse());
         return "students_grade_a";
     }
+
+    @GetMapping("/by-faculty")
+    public String getGradesByFaculty(@RequestParam String faculty, Model model) {
+        model.addAttribute("grades", gradeService.findGradesByFaculty(faculty));
+        model.addAttribute("grade", new Grade());
+        model.addAttribute("students", studentService.getAllStudent());
+        model.addAttribute("courses", courseService.getAllCourse());
+        model.addAttribute("facultySearched", faculty);
+        return "grades";
+    }
+
+    @GetMapping("/by-course")
+    public String getGradesByCourse(@RequestParam Long courseId, Model model) {
+        model.addAttribute("grades", gradeService.getGradesByCourseId(courseId));
+        model.addAttribute("grade", new Grade());
+        model.addAttribute("students", studentService.getAllStudent());
+        model.addAttribute("courses", courseService.getAllCourse());
+        model.addAttribute("courseSearched", courseId);
+        return "grades";
+    }
 }

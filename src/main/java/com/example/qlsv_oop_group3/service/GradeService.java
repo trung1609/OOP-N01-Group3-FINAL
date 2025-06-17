@@ -265,4 +265,12 @@ public class GradeService {
                 .filter(java.util.Objects::nonNull)
                 .collect(Collectors.toList());
     }
+
+    // Tìm điểm của sinh viên theo khoa
+    public List<Grade> findGradesByFaculty(String faculty) {
+        return gradeRepo.findAll().stream()
+                .filter(g -> g.getStudent() != null && faculty != null
+                        && faculty.equalsIgnoreCase(g.getStudent().getFaculty()))
+                .toList();
+    }
 }

@@ -57,6 +57,14 @@ public class StudentController {
         model.addAttribute("students", studentService.findStudentsBySemester(semester));
         return "students";
     }
+
+    @GetMapping("/faculty")
+    public String getStudentsByFaculty(@RequestParam String faculty, Model model) {
+        model.addAttribute("students", studentService.findStudentsByFaculty(faculty));
+        model.addAttribute("student", new Student());
+        model.addAttribute("facultySearched", faculty);
+        return "students";
+    }
 }
 
 @Controller

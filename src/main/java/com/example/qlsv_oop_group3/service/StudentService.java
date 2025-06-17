@@ -47,14 +47,14 @@ public class StudentService {
         gradeRepo.deleteAll(gradeRepo.findByStudentId(id));
         studentRepo.deleteById(id);
     }
-    public void checkDuplicateStudent(Student student) {
-        if (studentRepo.existsByStudentCode(student.getStudentCode())) {
-            throw new RuntimeException("Mã sinh viên đã tồn tại");
-        }
-        if (studentRepo.existsByEmail(student.getEmail())) {
-            throw new RuntimeException("Email đã tồn tại");
-        }
-    }
+//    public void checkDuplicateStudent(Student student) {
+//        if (studentRepo.existsByStudentCode(student.getStudentCode())) {
+//            throw new RuntimeException("Mã sinh viên đã tồn tại");
+//        }
+//        if (studentRepo.existsByEmail(student.getEmail())) {
+//            throw new RuntimeException("Email đã tồn tại");
+//        }
+//    }
     // Kiểm tra định dạng mã sinh viên: chỉ số, 5-20 ký tự số
     private void validateStudentCode(String studentCode) {
         if (studentCode == null || !studentCode.matches("^\\d{8}$")) {
@@ -74,5 +74,12 @@ public class StudentService {
         if (fullName == null || !fullName.matches("^[\\p{L} ]+$")) {
             throw new RuntimeException("Họ tên chỉ được chứa chữ cái và khoảng trắng.");
         }
+    }
+
+    // Tìm sinh viên theo khoa
+    public List<Student> findStudentsByFaculty(String faculty) {
+        return studentRepo.findAll().stream()
+                .filter(s -> s.getFaculty() != null && s.getFaculty().equalsIgnoreCase(faculty))
+                .toList();
     }
 }

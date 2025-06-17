@@ -184,6 +184,11 @@
     <a th:href="@{/courses}">Khóa học</a>
     <a th:href="@{/grades}">Điểm</a>
 </nav>
+
+<form th:action="@{/students/faculty}" method="get" style="max-width:400px;margin:24px auto 0 auto;display:flex;gap:10px;">
+    <input type="text" name="faculty" placeholder="Nhập tên khoa..." th:value="${facultySearched}" required style="flex:1;"/>
+    <button type="submit">Tìm theo Khoa</button>
+</form>
 <h2>Quản lý Sinh viên</h2>
 <form th:action="@{/students}" th:object="${student}" method="post">
     <input type="hidden" th:field="*{id}" />
@@ -192,6 +197,7 @@
     <input type="email" th:field="*{email}" placeholder="Email" required />
     <input type="text" th:field="*{address}" placeholder="Địa chỉ" required />
     <input type="date" th:field="*{dateOfBirth}" placeholder="Ngày sinh" required />
+    <input type="text" th:field="*{faculty}" placeholder="Khoa" required />
     <button type="submit">Lưu</button>
     <a th:href="@{/students}"><button type="button">Hủy</button></a>
 </form>
@@ -199,7 +205,7 @@
 <table>
     <thead>
     <tr>
-        <th>ID</th><th>Họ tên</th><th>Mã Sinh Viên</th><th>Email</th><th>Địa chỉ</th><th>Ngày sinh</th><th>Thao tác</th>
+        <th>ID</th><th>Họ tên</th><th>Mã SV</th><th>Email</th><th>Địa chỉ</th><th>Ngày sinh</th><th>Khoa</th><th>Thao tác</th>
     </tr>
     </thead>
     <tbody>
@@ -210,6 +216,7 @@
         <td th:text="${s.email}"></td>
         <td th:text="${s.address}"></td>
         <td th:text="${s.dateOfBirth}"></td>
+        <td th:text="${s.faculty}"></td>
         <td class="actions">
             <a th:href="@{'/students/edit/' + ${s.id}}">Sửa</a>
             <a th:href="@{'/students/delete/' + ${s.id}}" onclick="return confirm('Xóa sinh viên này?')">Xóa</a>

@@ -19,6 +19,7 @@ public class Student {
     private String email;
     private String address;
     private LocalDate dateOfBirth;
+    private String faculty;
 
     @JsonIgnore
     @OneToMany(mappedBy = "student")
@@ -30,7 +31,7 @@ public class Student {
 
     // All args constructor
     public Student(long id, String studentCode, String fullName, String email,
-                   String address, LocalDate dateOfBirth, List<Grade> grades) {
+                   String address, LocalDate dateOfBirth, List<Grade> grades, String faculty) {
         this.id = id;
         this.studentCode = studentCode;
         this.fullName = fullName;
@@ -38,6 +39,7 @@ public class Student {
         this.address = address;
         this.dateOfBirth = dateOfBirth;
         this.grades = grades;
+        this.faculty = faculty;
     }
 
     // Getters and Setters
@@ -95,6 +97,14 @@ public class Student {
 
     public void setGrades(List<Grade> grades) {
         this.grades = grades;
+    }
+
+    public String getFaculty() {
+        return faculty;
+    }
+
+    public void setFaculty(String faculty) {
+        this.faculty = faculty;
     }
 
     public int getAge() {

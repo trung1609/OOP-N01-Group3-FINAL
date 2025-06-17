@@ -19,6 +19,7 @@ public class StudentTest {
         student.setAddress("Ha Noi");
         student.setDateOfBirth(LocalDate.of(2000, 1, 1));
         student.setGrades(new ArrayList<>());
+        student.setFaculty("CNTT");
     }
 
     @Test
@@ -32,6 +33,7 @@ public class StudentTest {
         assertEquals(LocalDate.of(2000, 1, 1), student.getDateOfBirth());
         assertNotNull(student.getGrades());
         assertTrue(student.getGrades().isEmpty());
+        assertEquals("CNTT", student.getFaculty());
     }
 
     @Test
@@ -73,7 +75,7 @@ public class StudentTest {
         ArrayList<Grade> grades = new ArrayList<>();
         Student student = new Student(1L, "SV001", "Nguyen Van A",
                 "nguyenvana@example.com", "Ha Noi",
-                birthDate, grades);
+                birthDate, grades, "CNTT");
 
         assertEquals(1L, student.getId());
         assertEquals("SV001", student.getStudentCode());
@@ -82,6 +84,7 @@ public class StudentTest {
         assertEquals("Ha Noi", student.getAddress());
         assertEquals(birthDate, student.getDateOfBirth());
         assertEquals(grades, student.getGrades());
+        assertEquals("CNTT", student.getFaculty());
     }
 
     @Test

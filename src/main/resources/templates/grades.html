@@ -256,5 +256,21 @@
     </tr>
     </tbody>
 </table>
+
+<form th:action="@{/grades/by-faculty}" method="get" style="max-width:400px;margin:32px auto 0 auto;display:flex;gap:10px;">
+    <input type="text" name="faculty" placeholder="Nhập tên khoa để tìm điểm..." th:value="${facultySearched}" required style="flex:1;"/>
+    <button type="submit">Tìm điểm theo Khoa</button>
+</form>
+
+
+<form th:action="@{/grades/by-course}" method="get" style="max-width:400px;margin:24px auto 0 auto;display:flex;gap:10px;">
+    <select name="courseId" required style="flex:1;">
+        <option value="">--Chọn môn học--</option>
+        <option th:each="c : ${courses}" th:value="${c.id}" th:text="${c.courseName + ' (' + c.courseCode + ')'}"
+            th:selected="${courseSearched != null and courseSearched == c.id}"></option>
+    </select>
+    <button type="submit">Tìm điểm theo Môn</button>
+</form>
+
 </body>
 </html>
