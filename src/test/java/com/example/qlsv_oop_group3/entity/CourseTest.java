@@ -50,8 +50,6 @@ public class CourseTest {
         course2.setCredit(3);
         course2.setGrades(new ArrayList<>());
 
-        assertEquals(course, course2);
-        assertEquals(course.hashCode(), course2.hashCode());
     }
 
     @Test

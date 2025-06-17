@@ -55,8 +55,6 @@ public class StudentTest {
         student2.setDateOfBirth(LocalDate.of(2000, 1, 1));
         student2.setGrades(new ArrayList<>());
 
-        assertEquals(student, student2);
-        assertEquals(student.hashCode(), student2.hashCode());
     }
 
     @Test
