@@ -33,14 +33,17 @@ public class GradeService {
         if (courseId == null) {
             throw new RuntimeException("ID khóa học không được để trống");
         }
+        if (grade.getMidtermScore() == null || grade.getFinalScore() == null) {
+            throw new RuntimeException("Điểm giữa kỳ và cuối kỳ không được để trống");
+        }
 
         Student student = studentRepo.findById(studentId).orElseThrow(() -> new RuntimeException("Không tìm thấy sinh viên"));
         Course course = courseRepo.findById(courseId).orElseThrow(() -> new RuntimeException("Không tìm thấy môn học"));
 
-        //Kiem tra diem da ton tai chua
-        if(gradeRepo.findByStudentIdAndCourseId(studentId, courseId)!=null){
-            throw new RuntimeException("Điểm của sinh viên cho môn học này đã tồn tại");
-        }
+//        //Kiem tra diem da ton tai chua
+//        if(gradeRepo.findByStudentIdAndCourseId(studentId, courseId)!=null){
+//            throw new RuntimeException("Điểm của sinh viên cho môn học này đã tồn tại");
+//        }
         validateScores(grade.getMidtermScore(), grade.getFinalScore());
         grade.setStudent(student);
         grade.setCourse(course);
@@ -51,6 +54,9 @@ public class GradeService {
     //Cap nhat diem
     public Grade updateGrade(Long id, Grade gradeUpdate) {
         Grade existingGrade = gradeRepo.findById(id).orElseThrow(() -> new RuntimeException("Không tìm thấy điểm"));
+        if (gradeUpdate.getMidtermScore() == null || gradeUpdate.getFinalScore() == null) {
+            throw new RuntimeException("Điểm giữa kỳ và cuối kỳ không được để trống");
+        }
         validateScores(gradeUpdate.getMidtermScore(), gradeUpdate.getFinalScore());
 
         existingGrade.setMidtermScore(gradeUpdate.getMidtermScore());

@@ -2,34 +2,179 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Quản lý Sinh viên</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background: #f8fafc; }
-        nav { background: #2563eb; color: #fff; padding: 14px 24px; }
-        nav a { color: #fff; margin-right: 18px; text-decoration: none; font-weight: 500; }
-        nav a:hover { text-decoration: underline; }
-        h2 { text-align: center; color: #2563eb; margin-top: 24px; }
-        form { background: #fff; border-radius: 10px; box-shadow: 0 2px 8px #0001; padding: 20px; max-width: 700px; margin: 24px auto 16px auto; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
-        form input { padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 1rem; }
-        form button { background: #2563eb; color: #fff; border: none; border-radius: 6px; padding: 8px 18px; font-size: 1rem; cursor: pointer; transition: background 0.2s; }
-        form button:hover { background: #1e40af; }
-        form a button { background: #64748b; }
-        form a button:hover { background: #334155; }
-        table { border-collapse: collapse; width: 95%; margin: 0 auto 32px auto; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px #0001; }
-        th, td { border: none; padding: 10px 14px; text-align: left; }
-        th { background: #2563eb; color: #fff; }
-        tr:nth-child(even) { background: #f1f5f9; }
-        tr:hover { background: #e0e7ef; }
-        .actions a { margin-right: 8px; text-decoration: none; color: #2563eb; font-weight: 500; }
-        .actions a:last-child { color: #dc2626; }
-        .actions a:hover { text-decoration: underline; }
-        .error { color: #dc2626; text-align: center; margin-bottom: 10px; }
+        body {
+            font-family: 'Montserrat', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f7971e 0%, #ffd200 100%);
+            min-height: 100vh;
+        }
+        nav {
+            background: linear-gradient(90deg, #ff512f 0%, #dd2476 100%);
+            color: #fff;
+            padding: 18px 32px;
+            box-shadow: 0 4px 16px #0002;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        nav a {
+            color: #fff;
+            margin-right: 28px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            transition: color 0.2s;
+            position: relative;
+        }
+        nav a::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 3px;
+            background: #fff;
+            transition: width .3s;
+            border-radius: 2px;
+            margin-top: 2px;
+        }
+        nav a:hover {
+            color: #ffd200;
+        }
+        nav a:hover::after {
+            width: 100%;
+        }
+        h2 {
+            text-align: center;
+            color: #ff512f;
+            margin-top: 32px;
+            font-size: 2.3rem;
+            letter-spacing: 2px;
+            text-shadow: 1px 2px 8px #fff7, 0 2px 0 #ffd200;
+        }
+        form {
+            background: linear-gradient(120deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 18px;
+            box-shadow: 0 6px 24px #ff512f33;
+            padding: 28px 24px 18px 24px;
+            max-width: 800px;
+            margin: 32px auto 20px auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            align-items: center;
+            border: 2px solid #ff512f;
+        }
+        form input {
+            padding: 10px 14px;
+            border: 2px solid #ff512f;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            background: #fffbe7;
+            transition: border 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 8px #ffd20022;
+        }
+        form input:focus {
+            border: 2px solid #dd2476;
+            outline: none;
+            box-shadow: 0 0 8px #dd247655;
+        }
+        form button {
+            background: linear-gradient(90deg, #ff512f 0%, #dd2476 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 28px;
+            font-size: 1.08rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 2px 8px #ff512f33;
+            transition: background 0.2s, transform 0.1s;
+            margin-left: 8px;
+        }
+        form button:hover {
+            background: linear-gradient(90deg, #ffd200 0%, #ff512f 100%);
+            color: #ff512f;
+            transform: scale(1.07);
+        }
+        form a button {
+            background: linear-gradient(90deg, #64748b 0%, #334155 100%);
+            color: #fff;
+            margin-left: 0;
+        }
+        form a button:hover {
+            background: linear-gradient(90deg, #ffd200 0%, #64748b 100%);
+            color: #64748b;
+        }
+        table {
+            border-collapse: separate;
+            border-spacing: 0;
+            width: 97%;
+            margin: 0 auto 40px auto;
+            background: linear-gradient(120deg, #fff 60%, #ffe29f 100%);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 6px 24px #ff512f22;
+        }
+        th, td {
+            border: none;
+            padding: 14px 18px;
+            text-align: left;
+            font-size: 1.05rem;
+        }
+        th {
+            background: linear-gradient(90deg, #ff512f 0%, #dd2476 100%);
+            color: #fff;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+        tr:nth-child(even) {
+            background: #fffbe7;
+        }
+        tr:hover {
+            background: #ffe29f;
+            transition: background 0.2s;
+        }
+        .actions a {
+            margin-right: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            padding: 6px 16px;
+            border-radius: 6px;
+            transition: background 0.2s, color 0.2s;
+            font-size: 1rem;
+            box-shadow: 0 1px 4px #ff512f22;
+        }
+        .actions a:first-child {
+            background: linear-gradient(90deg, #ffd200 0%, #ff512f 100%);
+            color: #ff512f;
+        }
+        .actions a:last-child {
+            background: linear-gradient(90deg, #ff512f 0%, #dd2476 100%);
+            color: #fff;
+        }
+        .actions a:hover {
+            filter: brightness(1.15);
+            transform: scale(1.08);
+        }
+        .error {
+            color: #dc2626;
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-shadow: 0 1px 2px #fff9;
+        }
         @media (max-width: 900px) {
             form, table { width: 99%; }
-            th, td { font-size: 0.95rem; }
+            th, td { font-size: 0.98rem; }
         }
         @media (max-width: 600px) {
-            form { flex-direction: column; gap: 8px; }
-            table, th, td { font-size: 0.9rem; }
+            form { flex-direction: column; gap: 10px; }
+            table, th, td { font-size: 0.92rem; }
+            h2 { font-size: 1.4rem; }
         }
     </style>
 </head>

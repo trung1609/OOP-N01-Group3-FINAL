@@ -3,37 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <title>Sinh viên xuất sắc</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background: #f8fafc; }
-        nav { background: #2563eb; color: #fff; padding: 14px 24px; }
-        nav a { color: #fff; margin-right: 18px; text-decoration: none; font-weight: 500; }
-        nav a:hover { text-decoration: underline; }
-        h2 { text-align: center; color: #2563eb; margin-top: 24px; }
-        /* Đặt table rộng 99% để đồng bộ với trang điểm A */
-        table { border-collapse: collapse; width: 99%; margin: 24px auto 32px auto; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px #0001; }
-        th, td { border: none; padding: 10px 14px; text-align: left; }
-        th { background: #2563eb; color: #fff; }
-        tr:nth-child(even) { background: #f1f5f9; }
-        tr:hover { background: #e0e7ef; }
-        a.back { display: inline-block; margin: 0 0 0 24px; color: #2563eb; text-decoration: none; font-weight: 500; }
-        a.back:hover { text-decoration: underline; }
-        td, th {
-            border-bottom: 1px solid #e5e7eb;
-            vertical-align: middle;
+        body {
+            font-family: 'Montserrat', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ff6a00 0%, #ee0979 100%);
+            min-height: 100vh;
         }
-        td {
+        nav {
+            background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+            color: #fff;
+            padding: 18px 32px;
+            box-shadow: 0 4px 16px #0002;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        nav a {
+            color: #fff;
+            margin-right: 28px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            transition: color 0.2s;
+            position: relative;
+        }
+        nav a::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 3px;
             background: #fff;
-            transition: background 0.2s;
+            transition: width .3s;
+            border-radius: 2px;
+            margin-top: 2px;
         }
-        tr:hover td {
-            background: #e0e7ef;
+        nav a:hover {
+            color: #ff6a00;
+        }
+        nav a:hover::after {
+            width: 100%;
+        }
+        h2 {
+            text-align: center;
+            color: #092fee;
+            margin-top: 32px;
+            font-size: 2.3rem;
+            letter-spacing: 2px;
+            text-shadow: 1px 2px 8px #fff7, 0 2px 0 #ff6a00;
+        }
+        .link-group {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin: 24px 0 0 0;
+        }
+        .link-btn {
+            background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 32px;
+            font-size: 1.08rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 2px 8px #ee097933;
+            transition: background 0.2s, transform 0.1s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .link-btn:hover {
+            background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+            color: #ee0979;
+            transform: scale(1.07);
+        }
+        table {
+            border-collapse: separate;
+            border-spacing: 0;
+            width: 97%;
+            margin: 0 auto 40px auto;
+            background: linear-gradient(120deg, #fff 60%, #fff1eb 100%);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 6px 24px #ee097922;
+        }
+        th, td {
+            border: none;
+            padding: 14px 18px;
+            text-align: left;
+            font-size: 1.05rem;
+        }
+        th {
+            background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+            color: #fff;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+        tr:nth-child(even) {
+            background: #fffbe7;
+        }
+        tr:hover {
+            background: #fff1eb;
+            transition: background 0.2s;
         }
         @media (max-width: 900px) {
             table { width: 99%; }
-            th, td { font-size: 0.95rem; }
+            th, td { font-size: 0.98rem; }
         }
         @media (max-width: 600px) {
-            table, th, td { font-size: 0.9rem; }
+            table, th, td { font-size: 0.92rem; }
+            h2 { font-size: 1.4rem; }
+            .link-group { flex-direction: column; gap: 10px; }
         }
     </style>
 </head>
@@ -44,6 +127,10 @@
     <a th:href="@{/grades}">Điểm</a>
 </nav>
 <h2>Danh sách sinh viên xuất sắc</h2>
+<div class="link-group">
+    <a th:href="@{/grades}" class="link-btn">Quay lại trang điểm</a>
+    <a th:href="@{/grades/gradeA}" class="link-btn">Sinh viên đạt điểm A</a>
+</div>
 <table>
     <thead>
     <tr>
@@ -72,6 +159,5 @@
     </tr>
     </tbody>
 </table>
-<a th:href="@{/grades}" class="back">Quay lại</a>
 </body>
 </html>
