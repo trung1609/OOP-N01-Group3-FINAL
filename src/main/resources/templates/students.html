@@ -184,11 +184,6 @@
     <a th:href="@{/courses}">Khóa học</a>
     <a th:href="@{/grades}">Điểm</a>
 </nav>
-
-<form th:action="@{/students/faculty}" method="get" style="max-width:400px;margin:24px auto 0 auto;display:flex;gap:10px;">
-    <input type="text" name="faculty" placeholder="Nhập tên khoa..." th:value="${facultySearched}" required style="flex:1;"/>
-    <button type="submit">Tìm theo Khoa</button>
-</form>
 <h2>Quản lý Sinh viên</h2>
 <form th:action="@{/students}" th:object="${student}" method="post">
     <input type="hidden" th:field="*{id}" />
@@ -224,5 +219,9 @@
     </tr>
     </tbody>
 </table>
+<form th:action="@{/students/faculty}" method="get" style="max-width:400px;margin:24px auto 0 auto;display:flex;gap:10px;">
+    <input type="text" name="faculty" placeholder="Nhập tên khoa..." th:value="${facultySearched}" required style="flex:1;"/>
+    <button type="submit">Tìm theo Khoa</button>
+</form>
 </body>
 </html>

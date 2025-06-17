@@ -57,4 +57,18 @@ public class CourseController {
         model.addAttribute("courses", java.util.List.of(courseService.findByCourseCode(courseCode)));
         return "courses";
     }
+
+    // Tìm kiếm khóa học theo id (GET /courses/find-by-id?id=...)
+    @GetMapping("/find-by-id")
+    public String findCourseById(@RequestParam Long id, Model model) {
+        try {
+            Course foundCourse = courseService.getCourseById(id);
+            model.addAttribute("foundCourse", foundCourse);
+        } catch (Exception e) {
+            model.addAttribute("courseError", e.getMessage());
+        }
+        model.addAttribute("courses", courseService.getAllCourse());
+        model.addAttribute("course", new Course());
+        return "courses";
+    }
 }

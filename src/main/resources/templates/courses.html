@@ -59,7 +59,7 @@
             border-radius: 18px;
             box-shadow: 0 6px 24px #185a9d33;
             padding: 28px 24px 18px 24px;
-            max-width: 800px;
+            max-width: 700px;
             margin: 32px auto 20px auto;
             display: flex;
             flex-wrap: wrap;
@@ -72,7 +72,7 @@
             border: 2px solid #185a9d;
             border-radius: 8px;
             font-size: 1.05rem;
-            background: #f8fffe;
+            background: #fffbe7;
             transition: border 0.2s, box-shadow 0.2s;
             box-shadow: 0 2px 8px #43cea222;
         }
@@ -131,7 +131,7 @@
             letter-spacing: 1px;
         }
         tr:nth-child(even) {
-            background: #f8fffe;
+            background: #fffbe7;
         }
         tr:hover {
             background: #e0eafc;
@@ -160,7 +160,7 @@
             transform: scale(1.08);
         }
         .error {
-            color: #dc2626;
+            color: #b80000;
             text-align: center;
             margin-bottom: 10px;
             font-weight: 700;
@@ -187,17 +187,23 @@
 <h2>Quản lý Khóa học</h2>
 <form th:action="@{/courses}" th:object="${course}" method="post">
     <input type="hidden" th:field="*{id}" />
-    <input type="text" th:field="*{courseName}" placeholder="Tên khóa học" required />
-    <input type="text" th:field="*{courseCode}" placeholder="Mã khóa học" required />
+    <input type="text" th:field="*{courseName}" placeholder="Tên môn học" required />
+    <input type="text" th:field="*{courseCode}" placeholder="Mã môn học" required />
     <input type="number" th:field="*{credit}" placeholder="Số tín chỉ" min="1" required />
     <button type="submit">Lưu</button>
     <a th:href="@{/courses}"><button type="button">Hủy</button></a>
 </form>
 <div th:if="${error}" class="error" th:text="${error}"></div>
+<div th:if="${courseError != null}" class="error" th:text="${courseError}"></div>
+
 <table>
     <thead>
     <tr>
-        <th>ID</th><th>Tên khóa học</th><th>Mã Khóa Học</th><th>Số tín chỉ</th><th>Thao tác</th>
+        <th>ID</th>
+        <th>Tên môn học</th>
+        <th>Mã môn học</th>
+        <th>Số tín chỉ</th>
+        <th>Thao tác</th>
     </tr>
     </thead>
     <tbody>
@@ -210,6 +216,29 @@
             <a th:href="@{'/courses/edit/' + ${c.id}}">Sửa</a>
             <a th:href="@{'/courses/delete/' + ${c.id}}" onclick="return confirm('Xóa khóa học này?')">Xóa</a>
         </td>
+    </tr>
+    </tbody>
+</table>
+<!-- Form tìm khóa học theo ID -->
+<form th:action="@{/courses/find-by-id}" method="get" style="max-width:400px;margin:24px auto 40px auto;display:flex;gap:10px;">
+    <input type="number" name="id" placeholder="Nhập ID khóa học..." required style="flex:1;"/>
+    <button type="submit">Tìm khóa học theo ID</button>
+</form>
+<table th:if="${foundCourse != null}" style="max-width:600px;margin:0 auto 24px auto;">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Tên môn học</th>
+        <th>Mã môn học</th>
+        <th>Số tín chỉ</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td th:text="${foundCourse.id}"></td>
+        <td th:text="${foundCourse.courseName}"></td>
+        <td th:text="${foundCourse.courseCode}"></td>
+        <td th:text="${foundCourse.credit}"></td>
     </tr>
     </tbody>
 </table>
