@@ -151,7 +151,7 @@
         <td th:text="${s.studentId}"></td>
         <td th:text="${s.studentCode}"></td>
         <td th:text="${s.studentName}"></td>
-        <td th:text="${@studentService.getStudentById(s.studentId).faculty}"></td>
+        <td th:text="${studentService.getStudentById(s.studentId).faculty}"></td>
         <td th:text="${s.email}"></td>
         <td th:text="${s.address}"></td>
         <td th:text="${s.dateOfBirth}"></td>
