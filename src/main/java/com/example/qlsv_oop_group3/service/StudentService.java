@@ -16,7 +16,7 @@ public class StudentService {
         this.gradeRepo = gradeRepo;
     }
     public Student createStudent(Student student){
-        checkDuplicateStudent(student);
+//        checkDuplicateStudent(student);
         return studentRepo.save(student);
     }
     public List<Student> getAllStudent(){
@@ -38,7 +38,8 @@ public class StudentService {
         return studentRepo.findStudentsBySemester(semester);
     }
     public void deleteStudentById(Long id){
-
+        // Xóa tất cả điểm liên quan đến sinh viên này trước
+        gradeRepo.deleteAll(gradeRepo.findByStudentId(id));
         studentRepo.deleteById(id);
     }
     public void checkDuplicateStudent(Student student) {
