@@ -147,6 +147,9 @@
     </tr>
     </thead>
     <tbody>
+    <tr th:if="${excellentStudents == null or #lists.isEmpty(excellentStudents)}">
+        <td colspan="10" style="text-align:center;color:#dc2626;font-weight:bold;">Không có sinh viên xuất sắc nào.</td>
+    </tr>
     <tr th:each="s : ${excellentStudents}">
         <td th:text="${s.studentId}"></td>
         <td th:text="${s.studentCode}"></td>
