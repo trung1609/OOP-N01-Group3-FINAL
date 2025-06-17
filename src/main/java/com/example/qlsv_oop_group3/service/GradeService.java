@@ -160,7 +160,7 @@ public class GradeService {
     public Map<String, Object>calculateCumulativeGPA(Long studentId){
         Student student = studentRepo.findById(studentId).orElseThrow(() -> new RuntimeException("Không tìm thấy sinh viên"));
         List<Grade> allGrades = gradeRepo.findByStudentId(studentId);
-        Double totalCredits = 0.0;
+        int totalCredits = 0;
         Double totalGradePoints = 0.0;
         for(Grade grade : allGrades){
             if(grade.getScore() != null){
