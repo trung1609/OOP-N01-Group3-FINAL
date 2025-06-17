@@ -69,10 +69,10 @@ public class GradeService {
     //Kiem tra diem so
     private void validateScores(Double midtermScore, Double finalScore) {
         if (midtermScore != null && (midtermScore < 0 || midtermScore > 10)) {
-            throw new RuntimeException("Điểm giữa kỳ phải nằm trong khoảng 0-10");
+            throw new RuntimeException("Điểm phải nằm trong khoảng 0-10");
         }
         if (finalScore != null && (finalScore < 0 || finalScore > 10)) {
-            throw new RuntimeException("Điểm cuối kỳ phải nằm trong khoảng 0-10");
+            throw new RuntimeException("Điểm phải nằm trong khoảng 0-10");
         }
     }
 

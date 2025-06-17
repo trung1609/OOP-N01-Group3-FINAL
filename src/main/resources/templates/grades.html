@@ -185,7 +185,7 @@
             transform: scale(1.08);
         }
         .error {
-            color: #dc2626;
+            color: #ffffff;
             text-align: center;
             margin-bottom: 10px;
             font-weight: 700;
@@ -227,8 +227,8 @@
         <option th:each="c : ${courses}" th:value="${c.id}" th:text="${c.courseName + ' (' + c.courseCode + ')'}"
             th:selected="${grade.course != null and grade.course.id == c.id}"></option>
     </select>
-    <input type="number" th:field="*{midtermScore}" placeholder="Điểm GK" min="0" max="10" step="0.1" required />
-    <input type="number" th:field="*{finalScore}" placeholder="Điểm CK" min="0" max="10" step="0.1" required />
+    <input type="number" th:field="*{midtermScore}" placeholder="Điểm GK" step="0.1" required />
+    <input type="number" th:field="*{finalScore}" placeholder="Điểm CK" step="0.1" required />
     <input type="text" th:field="*{semester}" placeholder="Học kỳ (vd: 20231)" required />
     <button type="submit">Lưu</button>
     <a th:href="@{/grades}"><button type="button">Hủy</button></a>

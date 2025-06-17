@@ -57,9 +57,18 @@ public class GradeController {
     }
 
     @PostMapping("/update/{id}")
-    public String updateGrade(@PathVariable Long id, @ModelAttribute Grade grade) {
-        gradeService.updateGrade(id, grade);
-        return "redirect:/grades";
+    public String updateGrade(@PathVariable Long id, @ModelAttribute Grade grade, Model model) {
+        try {
+            gradeService.updateGrade(id, grade);
+            return "redirect:/grades";
+        } catch (Exception e) {
+            model.addAttribute("error", e.getMessage());
+            model.addAttribute("grades", gradeService.getAllGrades());
+            model.addAttribute("grade", grade);
+            model.addAttribute("students", studentService.getAllStudent());
+            model.addAttribute("courses", courseService.getAllCourse());
+            return "grades";
+        }
     }
 
     @GetMapping("/delete/{id}")
