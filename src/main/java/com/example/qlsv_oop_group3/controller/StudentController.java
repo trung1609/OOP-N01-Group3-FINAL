@@ -58,3 +58,11 @@ public class StudentController {
         return "students";
     }
 }
+
+@Controller
+class RootController {
+    @GetMapping("/")
+    public String redirectToStudents() {
+        return "redirect:/students";
+    }
+}
