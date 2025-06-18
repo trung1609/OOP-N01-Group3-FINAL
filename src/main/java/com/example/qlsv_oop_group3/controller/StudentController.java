@@ -23,7 +23,7 @@ public class StudentController {
             model.addAttribute("error", e.getMessage());
             return "students";
         } finally {
-            // Optional: logging or cleanup
+
         }
     }
 
@@ -38,7 +38,7 @@ public class StudentController {
             model.addAttribute("student", student);
             return "students";
         } finally {
-            // Optional: logging or cleanup
+
         }
     }
 
@@ -52,7 +52,7 @@ public class StudentController {
             model.addAttribute("error", e.getMessage());
             return "students";
         } finally {
-            // Optional: logging or cleanup
+
         }
     }
 
@@ -62,10 +62,9 @@ public class StudentController {
             studentService.updateStudent(id, student);
             return "redirect:/students";
         } catch (Exception e) {
-            // Optional: handle error
             return "redirect:/students?error=" + e.getMessage();
         } finally {
-            // Optional: logging or cleanup
+
         }
     }
 
@@ -75,10 +74,9 @@ public class StudentController {
             studentService.deleteStudentById(id);
             return "redirect:/students";
         } catch (Exception e) {
-            // Optional: handle error
             return "redirect:/students?error=" + e.getMessage();
         } finally {
-            // Optional: logging or cleanup
+
         }
     }
 
@@ -91,7 +89,7 @@ public class StudentController {
             model.addAttribute("error", e.getMessage());
             return "students";
         } finally {
-            // Optional: logging or cleanup
+
         }
     }
 
@@ -106,7 +104,7 @@ public class StudentController {
             model.addAttribute("error", e.getMessage());
             return "students";
         } finally {
-            // Optional: logging or cleanup
+
         }
     }
 }
@@ -120,7 +118,7 @@ class RootController {
         } catch (Exception e) {
             return "error";
         } finally {
-            // Optional: logging or cleanup
+
         }
     }
 }

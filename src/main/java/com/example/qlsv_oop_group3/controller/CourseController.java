@@ -23,7 +23,7 @@ public class CourseController {
             model.addAttribute("error", e.getMessage());
             return "courses";
         } finally {
-            // Optional: logging or cleanup
+
         }
     }
 
@@ -38,7 +38,7 @@ public class CourseController {
             model.addAttribute("course", course);
             return "courses";
         } finally {
-            // Optional: logging or cleanup
+
         }
     }
 
@@ -52,7 +52,7 @@ public class CourseController {
             model.addAttribute("error", e.getMessage());
             return "courses";
         } finally {
-            // Optional: logging or cleanup
+
         }
     }
 
@@ -64,7 +64,7 @@ public class CourseController {
         } catch (Exception e) {
             return "redirect:/courses?error=" + e.getMessage();
         } finally {
-            // Optional: logging or cleanup
+
         }
     }
 
@@ -76,7 +76,7 @@ public class CourseController {
         } catch (Exception e) {
             return "redirect:/courses?error=" + e.getMessage();
         } finally {
-            // Optional: logging or cleanup
+
         }
     }
 
@@ -89,11 +89,10 @@ public class CourseController {
             model.addAttribute("error", e.getMessage());
             return "courses";
         } finally {
-            // Optional: logging or cleanup
+
         }
     }
 
-    // Tìm kiếm khóa học theo id (GET /courses/find-by-id?id=...)
     @GetMapping("/find-by-id")
     public String findCourseById(@RequestParam Long id, Model model) {
         try {
@@ -102,7 +101,7 @@ public class CourseController {
         } catch (Exception e) {
             model.addAttribute("courseError", e.getMessage());
         } finally {
-            // Optional: logging or cleanup
+
         }
         model.addAttribute("courses", courseService.getAllCourse());
         model.addAttribute("course", new Course());

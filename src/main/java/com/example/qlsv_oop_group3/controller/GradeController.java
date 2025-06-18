@@ -32,7 +32,7 @@ public class GradeController {
             model.addAttribute("error", e.getMessage());
             return "grades";
         } finally {
-            // Optional: logging or cleanup
+
         }
     }
 
@@ -52,7 +52,7 @@ public class GradeController {
             model.addAttribute("courses", courseService.getAllCourse());
             return "grades";
         } finally {
-            // Optional: logging or cleanup
+
         }
     }
 
@@ -68,7 +68,7 @@ public class GradeController {
             model.addAttribute("error", e.getMessage());
             return "grades";
         } finally {
-            // Optional: logging or cleanup
+
         }
     }
 
@@ -85,7 +85,7 @@ public class GradeController {
             model.addAttribute("courses", courseService.getAllCourse());
             return "grades";
         } finally {
-            // Optional: logging or cleanup
+
         }
     }
 
@@ -97,7 +97,7 @@ public class GradeController {
         } catch (Exception e) {
             return "redirect:/grades?error=" + e.getMessage();
         } finally {
-            // Optional: logging or cleanup
+
         }
     }
 
@@ -112,7 +112,7 @@ public class GradeController {
             model.addAttribute("error", e.getMessage());
             return "excellent_students";
         } finally {
-            // Optional: logging or cleanup
+
         }
     }
 
@@ -130,7 +130,7 @@ public class GradeController {
             model.addAttribute("error", e.getMessage());
             return "students_grade_a";
         } finally {
-            // Optional: logging or cleanup
+
         }
     }
 
@@ -147,7 +147,7 @@ public class GradeController {
             model.addAttribute("error", e.getMessage());
             return "grades";
         } finally {
-            // Optional: logging or cleanup
+
         }
     }
 
@@ -164,7 +164,7 @@ public class GradeController {
             model.addAttribute("error", e.getMessage());
             return "grades";
         } finally {
-            // Optional: logging or cleanup
+
         }
     }
 
@@ -181,7 +181,7 @@ public class GradeController {
             model.addAttribute("error", e.getMessage());
             return "grades";
         } finally {
-            // Optional: logging or cleanup
+
         }
     }
 }
