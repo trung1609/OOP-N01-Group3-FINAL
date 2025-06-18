@@ -197,4 +197,13 @@ Lưu Đồ Thuật Toán:
 ### Giao diện Sinh viên đạt điểm A:
 ![Screenshot 2025-06-18 163151](https://github.com/user-attachments/assets/d6c52e72-490a-48ad-a728-4c47de8d93b7)
 
+### Giao diện students:
+![Ảnh1](https://github.com/user-attachments/assets/6fdd12fc-d1f0-4e5d-9d0f-756bc663df73)
+
+### Giao diện courses:
+![Ảnh2](https://github.com/user-attachments/assets/8f4f8232-5827-4f6e-abee-acc170b558c6)
+
+
+
+
 
