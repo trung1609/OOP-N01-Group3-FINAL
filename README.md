@@ -184,11 +184,17 @@ Lưu Đồ Thuật Toán:
 
 
 
-
-
-
-
-
   Link repo: https://github.com/trung1609/OOP-N01-Group3-FINAL.git
+
+### Giao diện grades:
+
+![Screenshot 2025-06-18 163047](https://github.com/user-attachments/assets/fc951912-28e8-405f-8158-387df95dc2c0)
+
+
+### Giao diện Sinh viên xuất sắc:
+![Screenshot 2025-06-18 163113](https://github.com/user-attachments/assets/dffe79ac-da18-4c91-8250-956c42efc9ac)
+
+### Giao diện Sinh viên đạt điểm A:
+![Screenshot 2025-06-18 163151](https://github.com/user-attachments/assets/d6c52e72-490a-48ad-a728-4c47de8d93b7)
 
 
