@@ -81,6 +81,7 @@ public class GradeController {
     public String getExcellentStudents(Model model) {
         List<Map<String, Object>> students = gradeService.findExcellentStudents();
         model.addAttribute("excellentStudents", students);
+        model.addAttribute("studentService", studentService);
         return "excellent_students";
     }
 
