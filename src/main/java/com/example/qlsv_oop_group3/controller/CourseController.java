@@ -15,9 +15,16 @@ public class CourseController {
 
     @GetMapping
     public String getAllCourses(Model model) {
-        model.addAttribute("courses", courseService.getAllCourse());
-        model.addAttribute("course", new Course());
-        return "courses";
+        try {
+            model.addAttribute("courses", courseService.getAllCourse());
+            model.addAttribute("course", new Course());
+            return "courses";
+        } catch (Exception e) {
+            model.addAttribute("error", e.getMessage());
+            return "courses";
+        } finally {
+            // Optional: logging or cleanup
+        }
     }
 
     @PostMapping
@@ -30,32 +37,60 @@ public class CourseController {
             model.addAttribute("courses", courseService.getAllCourse());
             model.addAttribute("course", course);
             return "courses";
+        } finally {
+            // Optional: logging or cleanup
         }
     }
 
     @GetMapping("/edit/{id}")
     public String editCourse(@PathVariable Long id, Model model) {
-        model.addAttribute("course", courseService.getCourseById(id));
-        model.addAttribute("courses", courseService.getAllCourse());
-        return "courses";
+        try {
+            model.addAttribute("course", courseService.getCourseById(id));
+            model.addAttribute("courses", courseService.getAllCourse());
+            return "courses";
+        } catch (Exception e) {
+            model.addAttribute("error", e.getMessage());
+            return "courses";
+        } finally {
+            // Optional: logging or cleanup
+        }
     }
 
     @PostMapping("/update/{id}")
     public String updateCourse(@PathVariable Long id, @ModelAttribute Course course) {
-        courseService.updateCourse(id, course);
-        return "redirect:/courses";
+        try {
+            courseService.updateCourse(id, course);
+            return "redirect:/courses";
+        } catch (Exception e) {
+            return "redirect:/courses?error=" + e.getMessage();
+        } finally {
+            // Optional: logging or cleanup
+        }
     }
 
     @GetMapping("/delete/{id}")
     public String deleteCourse(@PathVariable Long id) {
-        courseService.deleteCourseById(id);
-        return "redirect:/courses";
+        try {
+            courseService.deleteCourseById(id);
+            return "redirect:/courses";
+        } catch (Exception e) {
+            return "redirect:/courses?error=" + e.getMessage();
+        } finally {
+            // Optional: logging or cleanup
+        }
     }
 
     @GetMapping("/code/{courseCode}")
     public String getCourseByCode(@PathVariable String courseCode, Model model) {
-        model.addAttribute("courses", java.util.List.of(courseService.findByCourseCode(courseCode)));
-        return "courses";
+        try {
+            model.addAttribute("courses", java.util.List.of(courseService.findByCourseCode(courseCode)));
+            return "courses";
+        } catch (Exception e) {
+            model.addAttribute("error", e.getMessage());
+            return "courses";
+        } finally {
+            // Optional: logging or cleanup
+        }
     }
 
     // Tìm kiếm khóa học theo id (GET /courses/find-by-id?id=...)
@@ -66,6 +101,8 @@ public class CourseController {
             model.addAttribute("foundCourse", foundCourse);
         } catch (Exception e) {
             model.addAttribute("courseError", e.getMessage());
+        } finally {
+            // Optional: logging or cleanup
         }
         model.addAttribute("courses", courseService.getAllCourse());
         model.addAttribute("course", new Course());

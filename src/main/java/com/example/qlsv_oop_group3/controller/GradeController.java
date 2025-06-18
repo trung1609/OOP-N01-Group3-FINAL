@@ -22,11 +22,18 @@ public class GradeController {
 
     @GetMapping
     public String getAllGrades(Model model) {
-        model.addAttribute("grades", gradeService.getAllGrades());
-        model.addAttribute("grade", new Grade());
-        model.addAttribute("students", studentService.getAllStudent());
-        model.addAttribute("courses", courseService.getAllCourse());
-        return "grades";
+        try {
+            model.addAttribute("grades", gradeService.getAllGrades());
+            model.addAttribute("grade", new Grade());
+            model.addAttribute("students", studentService.getAllStudent());
+            model.addAttribute("courses", courseService.getAllCourse());
+            return "grades";
+        } catch (Exception e) {
+            model.addAttribute("error", e.getMessage());
+            return "grades";
+        } finally {
+            // Optional: logging or cleanup
+        }
     }
 
     @PostMapping
@@ -44,16 +51,25 @@ public class GradeController {
             model.addAttribute("students", studentService.getAllStudent());
             model.addAttribute("courses", courseService.getAllCourse());
             return "grades";
+        } finally {
+            // Optional: logging or cleanup
         }
     }
 
     @GetMapping("/edit/{id}")
     public String editGrade(@PathVariable Long id, Model model) {
-        model.addAttribute("grade", gradeService.getGradeById(id));
-        model.addAttribute("grades", gradeService.getAllGrades());
-        model.addAttribute("students", studentService.getAllStudent());
-        model.addAttribute("courses", courseService.getAllCourse());
-        return "grades";
+        try {
+            model.addAttribute("grade", gradeService.getGradeById(id));
+            model.addAttribute("grades", gradeService.getAllGrades());
+            model.addAttribute("students", studentService.getAllStudent());
+            model.addAttribute("courses", courseService.getAllCourse());
+            return "grades";
+        } catch (Exception e) {
+            model.addAttribute("error", e.getMessage());
+            return "grades";
+        } finally {
+            // Optional: logging or cleanup
+        }
     }
 
     @PostMapping("/update/{id}")
@@ -68,61 +84,104 @@ public class GradeController {
             model.addAttribute("students", studentService.getAllStudent());
             model.addAttribute("courses", courseService.getAllCourse());
             return "grades";
+        } finally {
+            // Optional: logging or cleanup
         }
     }
 
     @GetMapping("/delete/{id}")
     public String deleteGrade(@PathVariable Long id) {
-        gradeService.deleteGrade(id);
-        return "redirect:/grades";
+        try {
+            gradeService.deleteGrade(id);
+            return "redirect:/grades";
+        } catch (Exception e) {
+            return "redirect:/grades?error=" + e.getMessage();
+        } finally {
+            // Optional: logging or cleanup
+        }
     }
 
     @GetMapping("/excellent")
     public String getExcellentStudents(Model model) {
-        List<Map<String, Object>> students = gradeService.findExcellentStudents();
-        model.addAttribute("excellentStudents", students);
-        model.addAttribute("studentService", studentService);
-        return "excellent_students";
+        try {
+            List<Map<String, Object>> students = gradeService.findExcellentStudents();
+            model.addAttribute("excellentStudents", students);
+            model.addAttribute("studentService", studentService);
+            return "excellent_students";
+        } catch (Exception e) {
+            model.addAttribute("error", e.getMessage());
+            return "excellent_students";
+        } finally {
+            // Optional: logging or cleanup
+        }
     }
 
     @GetMapping("/gradeA")
     public String getStudentsWithGradeA(@RequestParam(required = false) Long courseId, Model model) {
-        if (courseId != null) {
-            List<Map<String, Object>> students = gradeService.findStudentsWithGradeA(courseId);
-            model.addAttribute("gradeAStudents", students);
-            model.addAttribute("courseId", courseId);
+        try {
+            if (courseId != null) {
+                List<Map<String, Object>> students = gradeService.findStudentsWithGradeA(courseId);
+                model.addAttribute("gradeAStudents", students);
+                model.addAttribute("courseId", courseId);
+            }
+            model.addAttribute("courses", courseService.getAllCourse());
+            return "students_grade_a";
+        } catch (Exception e) {
+            model.addAttribute("error", e.getMessage());
+            return "students_grade_a";
+        } finally {
+            // Optional: logging or cleanup
         }
-        model.addAttribute("courses", courseService.getAllCourse());
-        return "students_grade_a";
     }
 
     @GetMapping("/by-faculty")
     public String getGradesByFaculty(@RequestParam String faculty, Model model) {
-        model.addAttribute("grades", gradeService.findGradesByFaculty(faculty));
-        model.addAttribute("grade", new Grade());
-        model.addAttribute("students", studentService.getAllStudent());
-        model.addAttribute("courses", courseService.getAllCourse());
-        model.addAttribute("facultySearched", faculty);
-        return "grades";
+        try {
+            model.addAttribute("grades", gradeService.findGradesByFaculty(faculty));
+            model.addAttribute("grade", new Grade());
+            model.addAttribute("students", studentService.getAllStudent());
+            model.addAttribute("courses", courseService.getAllCourse());
+            model.addAttribute("facultySearched", faculty);
+            return "grades";
+        } catch (Exception e) {
+            model.addAttribute("error", e.getMessage());
+            return "grades";
+        } finally {
+            // Optional: logging or cleanup
+        }
     }
 
     @GetMapping("/by-course")
     public String getGradesByCourse(@RequestParam Long courseId, Model model) {
-        model.addAttribute("grades", gradeService.getGradesByCourseId(courseId));
-        model.addAttribute("grade", new Grade());
-        model.addAttribute("students", studentService.getAllStudent());
-        model.addAttribute("courses", courseService.getAllCourse());
-        model.addAttribute("courseSearched", courseId);
-        return "grades";
+        try {
+            model.addAttribute("grades", gradeService.getGradesByCourseId(courseId));
+            model.addAttribute("grade", new Grade());
+            model.addAttribute("students", studentService.getAllStudent());
+            model.addAttribute("courses", courseService.getAllCourse());
+            model.addAttribute("courseSearched", courseId);
+            return "grades";
+        } catch (Exception e) {
+            model.addAttribute("error", e.getMessage());
+            return "grades";
+        } finally {
+            // Optional: logging or cleanup
+        }
     }
 
     @GetMapping("/by-semester")
     public String getGradesBySemester(@RequestParam String semester, Model model) {
-        model.addAttribute("grades", gradeService.getGradesBySemester(semester));
-        model.addAttribute("grade", new Grade());
-        model.addAttribute("students", studentService.getAllStudent());
-        model.addAttribute("courses", courseService.getAllCourse());
-        model.addAttribute("semesterSearched", semester);
-        return "grades";
+        try {
+            model.addAttribute("grades", gradeService.getGradesBySemester(semester));
+            model.addAttribute("grade", new Grade());
+            model.addAttribute("students", studentService.getAllStudent());
+            model.addAttribute("courses", courseService.getAllCourse());
+            model.addAttribute("semesterSearched", semester);
+            return "grades";
+        } catch (Exception e) {
+            model.addAttribute("error", e.getMessage());
+            return "grades";
+        } finally {
+            // Optional: logging or cleanup
+        }
     }
 }

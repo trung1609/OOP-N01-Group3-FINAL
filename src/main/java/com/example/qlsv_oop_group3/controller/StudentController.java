@@ -15,9 +15,16 @@ public class StudentController {
 
     @GetMapping
     public String getAllStudents(Model model) {
-        model.addAttribute("students", studentService.getAllStudent());
-        model.addAttribute("student", new Student());
-        return "students";
+        try {
+            model.addAttribute("students", studentService.getAllStudent());
+            model.addAttribute("student", new Student());
+            return "students";
+        } catch (Exception e) {
+            model.addAttribute("error", e.getMessage());
+            return "students";
+        } finally {
+            // Optional: logging or cleanup
+        }
     }
 
     @PostMapping
@@ -30,40 +37,77 @@ public class StudentController {
             model.addAttribute("students", studentService.getAllStudent());
             model.addAttribute("student", student);
             return "students";
+        } finally {
+            // Optional: logging or cleanup
         }
     }
 
     @GetMapping("/edit/{id}")
     public String editStudent(@PathVariable Long id, Model model) {
-        model.addAttribute("student", studentService.getStudentById(id));
-        model.addAttribute("students", studentService.getAllStudent());
-        return "students";
+        try {
+            model.addAttribute("student", studentService.getStudentById(id));
+            model.addAttribute("students", studentService.getAllStudent());
+            return "students";
+        } catch (Exception e) {
+            model.addAttribute("error", e.getMessage());
+            return "students";
+        } finally {
+            // Optional: logging or cleanup
+        }
     }
 
     @PostMapping("/update/{id}")
     public String updateStudent(@PathVariable Long id, @ModelAttribute Student student) {
-        studentService.updateStudent(id, student);
-        return "redirect:/students";
+        try {
+            studentService.updateStudent(id, student);
+            return "redirect:/students";
+        } catch (Exception e) {
+            // Optional: handle error
+            return "redirect:/students?error=" + e.getMessage();
+        } finally {
+            // Optional: logging or cleanup
+        }
     }
 
     @GetMapping("/delete/{id}")
     public String deleteStudent(@PathVariable Long id) {
-        studentService.deleteStudentById(id);
-        return "redirect:/students";
+        try {
+            studentService.deleteStudentById(id);
+            return "redirect:/students";
+        } catch (Exception e) {
+            // Optional: handle error
+            return "redirect:/students?error=" + e.getMessage();
+        } finally {
+            // Optional: logging or cleanup
+        }
     }
 
     @GetMapping("/semester/{semester}")
     public String getStudentsBySemester(@PathVariable String semester, Model model) {
-        model.addAttribute("students", studentService.findStudentsBySemester(semester));
-        return "students";
+        try {
+            model.addAttribute("students", studentService.findStudentsBySemester(semester));
+            return "students";
+        } catch (Exception e) {
+            model.addAttribute("error", e.getMessage());
+            return "students";
+        } finally {
+            // Optional: logging or cleanup
+        }
     }
 
     @GetMapping("/faculty")
     public String getStudentsByFaculty(@RequestParam String faculty, Model model) {
-        model.addAttribute("students", studentService.findStudentsByFaculty(faculty));
-        model.addAttribute("student", new Student());
-        model.addAttribute("facultySearched", faculty);
-        return "students";
+        try {
+            model.addAttribute("students", studentService.findStudentsByFaculty(faculty));
+            model.addAttribute("student", new Student());
+            model.addAttribute("facultySearched", faculty);
+            return "students";
+        } catch (Exception e) {
+            model.addAttribute("error", e.getMessage());
+            return "students";
+        } finally {
+            // Optional: logging or cleanup
+        }
     }
 }
 
@@ -71,6 +115,12 @@ public class StudentController {
 class RootController {
     @GetMapping("/")
     public String redirectToStudents() {
-        return "redirect:/students";
+        try {
+            return "redirect:/students";
+        } catch (Exception e) {
+            return "error";
+        } finally {
+            // Optional: logging or cleanup
+        }
     }
 }
