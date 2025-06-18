@@ -237,13 +237,22 @@
 <table>
     <thead>
     <tr>
-        <th>ID</th><th>Sinh Viên</th><th>Khóa học</th><th>Giữa Kỳ</th><th>Cuối Kỳ</th><th>Tổng Kết</th><th>Học kỳ</th><th>Thao tác</th>
+        <th>ID</th>
+        <th>Sinh Viên</th>
+        <th>Khoa</th>
+        <th>Khóa học</th>
+        <th>Giữa Kỳ</th>
+        <th>Cuối Kỳ</th>
+        <th>Tổng Kết</th>
+        <th>Học kỳ</th>
+        <th>Thao tác</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="g : ${grades}">
         <td th:text="${g.id}"></td>
         <td th:text="${g.student != null ? g.student.fullName : ''}"></td>
+        <td th:text="${g.student != null ? g.student.faculty : ''}"></td>
         <td th:text="${g.course != null ? g.course.courseName : ''}"></td>
         <td th:text="${g.midtermScore}"></td>
         <td th:text="${g.finalScore}"></td>
