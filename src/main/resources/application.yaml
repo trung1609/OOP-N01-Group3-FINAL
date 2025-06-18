@@ -21,6 +21,6 @@ logging:
         root: DEBUG
         org.springframework: DEBUG
         org.hibernate: DEBUG
-        com.example.qlsv_oop_group3: DEBUG{
+        com.example.qlsv_oop_group3: DEBUG
 
 
