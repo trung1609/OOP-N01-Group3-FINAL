@@ -281,5 +281,10 @@
     <button type="submit">Tìm điểm theo Môn</button>
 </form>
 
+<form th:action="@{/grades/by-semester}" method="get" style="max-width:400px;margin:24px auto 40px auto;display:flex;gap:10px;">
+    <input type="text" name="semester" placeholder="Nhập học kỳ (vd: 20231)..." th:value="${semesterSearched}" required style="flex:1;"/>
+    <button type="submit">Tìm điểm theo Học kỳ</button>
+</form>
+
 </body>
 </html>

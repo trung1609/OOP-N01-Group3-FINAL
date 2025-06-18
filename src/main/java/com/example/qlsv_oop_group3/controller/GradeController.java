@@ -115,4 +115,14 @@ public class GradeController {
         model.addAttribute("courseSearched", courseId);
         return "grades";
     }
+
+    @GetMapping("/by-semester")
+    public String getGradesBySemester(@RequestParam String semester, Model model) {
+        model.addAttribute("grades", gradeService.getGradesBySemester(semester));
+        model.addAttribute("grade", new Grade());
+        model.addAttribute("students", studentService.getAllStudent());
+        model.addAttribute("courses", courseService.getAllCourse());
+        model.addAttribute("semesterSearched", semester);
+        return "grades";
+    }
 }

@@ -273,4 +273,9 @@ public class GradeService {
                         && faculty.equalsIgnoreCase(g.getStudent().getFaculty()))
                 .toList();
     }
+
+    public List<Grade> getGradesBySemester(String semester) {
+        return gradeRepo.findBySemester(semester);
+    }
+    
 }
