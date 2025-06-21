@@ -55,16 +55,18 @@ public class StudentService {
 //            throw new RuntimeException("Email đã tồn tại");
 //        }
 //    }
-    // Kiểm tra định dạng mã sinh viên: chỉ số, 5-20 ký tự số
+    // Kiểm tra định dạng mã sinh viên: chỉ số, 8 ký tự số
     private void validateStudentCode(String studentCode) {
         if (studentCode == null || !studentCode.matches("^\\d{8}$")) {
             throw new RuntimeException("Mã sinh viên phải gồm 8 số.");
         }
     }
 
-    // Kiểm tra định dạng email: phải đúng @gmail.com
+    // Kiểm tra định dạng email: phải đúng @gmail.com hoặc @st.phenikaa-uni.edu.vn
     private void validateEmail(String email) {
-        if (email == null || !Pattern.matches("^[A-Za-z0-9+_.-]+@gmail\\.com$", email)) {
+        if (email == null ||
+            !(Pattern.matches("^[A-Za-z0-9+_.-]+@gmail\\.com$", email) ||
+              Pattern.matches("^[A-Za-z0-9+_.-]+@st\\.phenikaa-uni\\.edu\\.vn$", email))) {
             throw new RuntimeException("Email chưa đúng định dạng.");
         }
     }
