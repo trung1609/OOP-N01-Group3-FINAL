@@ -38,6 +38,7 @@ Sử dụng JUnit và Spring Boot Test để kiểm thử các chức năng:
 - Java 17
 - JDK 22
 - MySql
+- Sử dụng database trên Aiven
 
 ## Chức năng
 1. Student: Quản lý thông tin sinh viên
