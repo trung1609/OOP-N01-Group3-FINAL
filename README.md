@@ -57,26 +57,23 @@ Sử dụng JUnit và Spring Boot Test để kiểm thử các chức năng:
 
 ## Class Diagram
 
-
-
-  UML
-UML Class Diagram
+## UML Class Diagram
 
 ![Class Diagram](https://github.com/user-attachments/assets/20e79c7d-373e-43f9-943a-6a74d715b869)
 
-UML Sequence Diagram Quan Ly Khoa Hoc
+# UML Sequence Diagram Quan Ly Khoa Hoc
 ![UML sequence diagram](https://github.com/user-attachments/assets/0be6d0fe-af86-4ed2-af91-6256d02f2be6)
 
-UML Sequence Diagram Quan Ly Sinh Vien
+# UML Sequence Diagram Quan Ly Sinh Vien
 ![UML sequence diagram QLSV](https://github.com/user-attachments/assets/ff34fe07-0a2f-4cab-86e4-6b11972a15a4)
 
-UML Sequence Diagram Quan Ly Diem
+# UML Sequence Diagram Quan Ly Diem
 ![UML sequence diagram QLD](https://github.com/user-attachments/assets/9a733d57-72b4-4cf8-8000-8b18cb53d477)
 
 
 
 
-Lưu Đồ Thuật Toán: 
+## Lưu Đồ Thuật Toán: 
 
 ![Luu Do Thuat Toan ](https://github.com/user-attachments/assets/5eb9f951-83f8-40c4-ae06-2b0b2e844ba2)
 
