@@ -37,6 +37,7 @@ Sử dụng JUnit và Spring Boot Test để kiểm thử các chức năng:
 - Ứng dụng được xây dựng với giao diện Java Spring Boot version 3.4.5
 - Java 17
 - JDK 22
+- MySql
 
 ## Chức năng
 1. Student: Quản lý thông tin sinh viên
