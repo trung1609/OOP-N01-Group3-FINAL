@@ -58,9 +58,8 @@ Sử dụng JUnit và Spring Boot Test để kiểm thử các chức năng:
 ## Class Diagram
 
 
-Link repo: https://github.com/trung1609/OOP-N01-Group3-FINAL.git 
 
-  UMLL
+  UML
 UML Class Diagram
 
 ![Class Diagram](https://github.com/user-attachments/assets/20e79c7d-373e-43f9-943a-6a74d715b869)
@@ -74,7 +73,6 @@ UML Sequence Diagram Quan Ly Sinh Vien
 UML Sequence Diagram Quan Ly Diem
 ![UML sequence diagram QLD](https://github.com/user-attachments/assets/9a733d57-72b4-4cf8-8000-8b18cb53d477)
 
-![Screenshot 2025-06-06 140232](https://github.com/user-attachments/assets/38529047-f44a-4c3f-ab8a-c5f421103525)
 
 
 
