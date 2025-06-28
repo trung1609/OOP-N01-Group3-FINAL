@@ -4,6 +4,11 @@
 ### - Vũ Minh Trung MSV: 23010361
 ### - Nguyễn Tường Hưng MSV: 23010439
 
+### Github pages dự án
+ https://github.com/trung1609/OOP-N01-Group3-FINAL.git
+### Demo sản phẩm
+https://youtu.be/5t58OiAroHw?si=cUt-_S42ZXdf07uf
+
 ## Mô tả dự án
 Hệ thống quản lý sinh viên với các chức năng cơ bản về quản lý thông tin sinh viên, môn học và điểm số.
 
@@ -100,10 +105,6 @@ Sử dụng JUnit và Spring Boot Test để kiểm thử các chức năng:
 ### Giao diện courses:
 ![Ảnh2](https://github.com/user-attachments/assets/8f4f8232-5827-4f6e-abee-acc170b558c6)
 
-### Github pages dự án
- https://github.com/trung1609/OOP-N01-Group3-FINAL.git
-### Demo sản phẩm
-https://youtu.be/5t58OiAroHw?si=cUt-_S42ZXdf07uf
 
 ### Cách Cài Đặt
 Clone repository từ GitHub:
