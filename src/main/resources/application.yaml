@@ -1,4 +1,4 @@
-
+#
 # spring:
 #     datasource:
 #         url: jdbc:mysql://localhost:3306/qlsv
@@ -13,5 +13,5 @@
 #                 dialect: org.hibernate.dialect.MySQLDialect
 #         open-in-view: true
 #     jackson:
-
-
+#
+#

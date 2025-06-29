@@ -42,6 +42,7 @@ public class Student {
         this.faculty = faculty;
     }
 
+
     // Getters and Setters
     public long getId() {
         return id;
