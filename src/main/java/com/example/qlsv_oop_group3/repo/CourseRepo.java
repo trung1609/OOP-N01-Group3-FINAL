@@ -21,7 +21,4 @@ public interface CourseRepo extends JpaRepository<Course, Long> {
     //Lấy danh sách các môn học mà một sinh viên cụ thể đã học (có điểm)
     @Query("SELECT DISTINCT c FROM Course c JOIN c.grades g WHERE g.student.id = :studentId")
     List<Course> findCoursesByStudentId(@Param("studentId") Long studentId);
-    //Tìm khóa học có số tín chỉ lớn hơn hoặc bằng giá trị cụ thể
-    @Query("SELECT c FROM Course c WHERE c.credit >= :minCredit")
-    List<Course> findCoursesByMinimumCredit(@Param("minCredit") Integer minCredit);
 }

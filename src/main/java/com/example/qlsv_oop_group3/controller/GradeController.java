@@ -20,6 +20,7 @@ public class GradeController {
     private final StudentService studentService;
     private final CourseService courseService;
 
+
     @GetMapping
     public String getAllGrades(Model model) {
         try {

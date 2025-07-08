@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class StudentController {
         private final StudentService studentService;
-
         @GetMapping
         public String getAllStudents(Model model) {
             try {

@@ -8,11 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequiredArgsConstructor
 @RequestMapping("/courses")
+@RequiredArgsConstructor
 public class CourseController {
     private final CourseService courseService;
-
     @GetMapping
     public String getAllCourses(Model model) {
         try {
